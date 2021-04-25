@@ -1,0 +1,10 @@
+<root>
+	<childA id="childA">
+        <grandchild>kleinkindcontent</grandchild>
+	</childA>
+	<childB id="childB">
+		contentB
+	</childB>
+    <childC id="childC"/>
+    <childD id="childD">contentD</childD>
+</root>

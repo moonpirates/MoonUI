@@ -1,14 +1,15 @@
-//
-//  main.cpp
-//  MoonUI
-//
-//  Created by Jordi Scharp on 25/04/2021.
-//
-
 #include <iostream>
+#include "Lexer.hpp"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+using namespace moonpirates;
+
+
+
+int main(int argc, const char * argv[])
+{
+    Lexer lexer;
+    XmlDoc xmlDoc = lexer.Parse("test.xml");
+//	std::cout << "--------------------------------------------" << std::endl;
+//	std::cout << xmlDoc.GetDebugInfo();
     return 0;
 }
