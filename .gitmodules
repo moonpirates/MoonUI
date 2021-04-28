@@ -1,0 +1,3 @@
+[submodule "MoonUI/src/Utils"]
+	path = MoonUI/src/Utils
+	url = git@github.com:moonpirates/Utils.git

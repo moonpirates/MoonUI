@@ -57,7 +57,7 @@ XmlDoc Lexer::Parse(std::string path)
             
             std::string tabs = std::string(depth, '\t');
             currentElement->Content = buffer;
-            std::cout << tabs << "[" << depth << "] " << currentElement->GetDebugInfo() << std::endl;
+            //std::cout << tabs << "[" << depth << "] " << currentElement->GetDebugInfo() << std::endl;
             
             currentElement = currentElement->Parent;
             depth--;
@@ -71,7 +71,7 @@ XmlDoc Lexer::Parse(std::string path)
             currentElement->Markup = buffer;
             ParseMarkup(buffer, currentElement);
             
-            std::cout << tabs << "[" << depth << "] " << currentElement->GetDebugInfo() << std::endl;
+           // std::cout << tabs << "[" << depth << "] " << currentElement->GetDebugInfo() << std::endl;
             
             currentElement = currentElement->Parent;
             depth--;
@@ -150,14 +150,39 @@ std::string& Lexer::Sanitize(std::string& s)
 
 void Lexer::ParseMarkup(std::string markup, std::shared_ptr<XmlElement> element)
 {
-    element->Markup = markup;
-    
-    std::string::size_type position = markup.find(' ');
-    
-    element->Tag = markup.substr(0, position);
+	element->Markup = markup;
 
-    if (position != std::string::npos)
-    {
-        std::string attributesString = markup.substr(position);
-    }
+	const std::string attributeRegex = R"(([a-zA-Z]+[\w|-]+)(?:\s*=\s*(?:"|'))([^"']*)(?:"|'))";
+	const std::string identifierRegex = R"([a-zA-Z]+)";
+	const std::regex markupRegex(attributeRegex + "|" + identifierRegex);
+		
+	std::smatch matches;
+	int i = 0;
+	
+	std::cout << "In: " << markup << std::endl;
+	
+	while (std::regex_search(markup, matches, markupRegex))
+	{
+		std::cout << "\t'" << matches[0] << "'" << std::endl;
+		
+		std::cout << matches.size() << std::endl;
+		
+		for (size_t j = 0; j < matches.size(); j++)
+		{
+			std::cout << "[" << matches.str(j) << "]" << std::endl;
+		}
+		
+		if (i == 0)
+		{
+			element->Tag = matches[0];
+		}
+		else
+		{
+			
+		}
+		
+		std::cout << "-------" << std::endl;
+		markup = matches.suffix();
+		i++;
+	}
 }

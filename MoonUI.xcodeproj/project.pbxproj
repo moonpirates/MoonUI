@@ -12,6 +12,12 @@
 		8D4540F426357E7C00C6CE36 /* XmlDoc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D4540EE26357E7B00C6CE36 /* XmlDoc.cpp */; };
 		8D4540F526357E7C00C6CE36 /* XmlElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D4540F026357E7C00C6CE36 /* XmlElement.cpp */; };
 		8D4540F626357E7C00C6CE36 /* Lexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D4540F126357E7C00C6CE36 /* Lexer.cpp */; };
+		8D9C52A8263A00750009B5A8 /* StateMachine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C5294263A00750009B5A8 /* StateMachine.cpp */; };
+		8D9C52A9263A00750009B5A8 /* StackedCondition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C5296263A00750009B5A8 /* StackedCondition.cpp */; };
+		8D9C52AA263A00750009B5A8 /* BaseCondition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C5298263A00750009B5A8 /* BaseCondition.cpp */; };
+		8D9C52AB263A00750009B5A8 /* BaseState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C529A263A00750009B5A8 /* BaseState.cpp */; };
+		8D9C52AC263A00750009B5A8 /* Dispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C52A2263A00750009B5A8 /* Dispatcher.cpp */; };
+		8D9C52AD263A00750009B5A8 /* Time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C52A7263A00750009B5A8 /* Time.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +52,23 @@
 		8D4540F026357E7C00C6CE36 /* XmlElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XmlElement.cpp; sourceTree = "<group>"; };
 		8D4540F126357E7C00C6CE36 /* Lexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Lexer.cpp; sourceTree = "<group>"; };
 		8D4540F226357E7C00C6CE36 /* test.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = test.xml; sourceTree = "<group>"; };
+		8D9C5292263A00750009B5A8 /* Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Time.h; sourceTree = "<group>"; };
+		8D9C5294263A00750009B5A8 /* StateMachine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StateMachine.cpp; sourceTree = "<group>"; };
+		8D9C5295263A00750009B5A8 /* StateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateMachine.h; sourceTree = "<group>"; };
+		8D9C5296263A00750009B5A8 /* StackedCondition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StackedCondition.cpp; sourceTree = "<group>"; };
+		8D9C5297263A00750009B5A8 /* BaseCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCondition.h; sourceTree = "<group>"; };
+		8D9C5298263A00750009B5A8 /* BaseCondition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseCondition.cpp; sourceTree = "<group>"; };
+		8D9C5299263A00750009B5A8 /* BaseState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseState.h; sourceTree = "<group>"; };
+		8D9C529A263A00750009B5A8 /* BaseState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseState.cpp; sourceTree = "<group>"; };
+		8D9C529B263A00750009B5A8 /* StackedCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackedCondition.h; sourceTree = "<group>"; };
+		8D9C529D263A00750009B5A8 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		8D9C529F263A00750009B5A8 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		8D9C52A0263A00750009B5A8 /* GlobalEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalEvents.h; sourceTree = "<group>"; };
+		8D9C52A1263A00750009B5A8 /* Dispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dispatcher.h; sourceTree = "<group>"; };
+		8D9C52A2263A00750009B5A8 /* Dispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dispatcher.cpp; sourceTree = "<group>"; };
+		8D9C52A4263A00750009B5A8 /* Updatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Updatable.h; sourceTree = "<group>"; };
+		8D9C52A6263A00750009B5A8 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		8D9C52A7263A00750009B5A8 /* Time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Time.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,13 +115,86 @@
 		8D4540E226357D0800C6CE36 /* MoonUI */ = {
 			isa = PBXGroup;
 			children = (
-				8D26F2B326357F0000E99EF8 /* XmlParser */,
+				8D9C528F2639FFD60009B5A8 /* src */,
 				8D4540F226357E7C00C6CE36 /* test.xml */,
-				8D4540E326357D0800C6CE36 /* main.cpp */,
 			);
 			path = MoonUI;
 			sourceTree = "<group>";
 			usesTabs = 1;
+		};
+		8D9C528F2639FFD60009B5A8 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				8D9C5291263A00750009B5A8 /* Utils */,
+				8D4540E326357D0800C6CE36 /* main.cpp */,
+				8D26F2B326357F0000E99EF8 /* XmlParser */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		8D9C5291263A00750009B5A8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8D9C5292263A00750009B5A8 /* Time.h */,
+				8D9C5293263A00750009B5A8 /* StateMachine */,
+				8D9C529C263A00750009B5A8 /* Macros */,
+				8D9C529E263A00750009B5A8 /* Events */,
+				8D9C52A3263A00750009B5A8 /* Systems */,
+				8D9C52A5263A00750009B5A8 /* Logging */,
+				8D9C52A7263A00750009B5A8 /* Time.cpp */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		8D9C5293263A00750009B5A8 /* StateMachine */ = {
+			isa = PBXGroup;
+			children = (
+				8D9C5294263A00750009B5A8 /* StateMachine.cpp */,
+				8D9C5295263A00750009B5A8 /* StateMachine.h */,
+				8D9C5296263A00750009B5A8 /* StackedCondition.cpp */,
+				8D9C5297263A00750009B5A8 /* BaseCondition.h */,
+				8D9C5298263A00750009B5A8 /* BaseCondition.cpp */,
+				8D9C5299263A00750009B5A8 /* BaseState.h */,
+				8D9C529A263A00750009B5A8 /* BaseState.cpp */,
+				8D9C529B263A00750009B5A8 /* StackedCondition.h */,
+			);
+			path = StateMachine;
+			sourceTree = "<group>";
+		};
+		8D9C529C263A00750009B5A8 /* Macros */ = {
+			isa = PBXGroup;
+			children = (
+				8D9C529D263A00750009B5A8 /* Macros.h */,
+			);
+			path = Macros;
+			sourceTree = "<group>";
+		};
+		8D9C529E263A00750009B5A8 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				8D9C529F263A00750009B5A8 /* Event.h */,
+				8D9C52A0263A00750009B5A8 /* GlobalEvents.h */,
+				8D9C52A1263A00750009B5A8 /* Dispatcher.h */,
+				8D9C52A2263A00750009B5A8 /* Dispatcher.cpp */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		8D9C52A3263A00750009B5A8 /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				8D9C52A4263A00750009B5A8 /* Updatable.h */,
+			);
+			path = Systems;
+			sourceTree = "<group>";
+		};
+		8D9C52A5263A00750009B5A8 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				8D9C52A6263A00750009B5A8 /* Logger.h */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -158,9 +254,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D4540F426357E7C00C6CE36 /* XmlDoc.cpp in Sources */,
+				8D9C52A8263A00750009B5A8 /* StateMachine.cpp in Sources */,
+				8D9C52AB263A00750009B5A8 /* BaseState.cpp in Sources */,
 				8D4540F526357E7C00C6CE36 /* XmlElement.cpp in Sources */,
+				8D9C52AD263A00750009B5A8 /* Time.cpp in Sources */,
 				8D4540E426357D0800C6CE36 /* main.cpp in Sources */,
 				8D4540F626357E7C00C6CE36 /* Lexer.cpp in Sources */,
+				8D9C52AC263A00750009B5A8 /* Dispatcher.cpp in Sources */,
+				8D9C52A9263A00750009B5A8 /* StackedCondition.cpp in Sources */,
+				8D9C52AA263A00750009B5A8 /* BaseCondition.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
