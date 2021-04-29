@@ -7,6 +7,7 @@
 #include <regex>
 #include "XmlDoc.hpp"
 #include "XmlElement.hpp"
+#include "Macros.h"
 
 namespace moonpirates
 {
@@ -16,9 +17,6 @@ namespace moonpirates
         Lexer();
         moonpirates::XmlDoc Parse(std::string path);
     private:
-        const char NODE_OPENING_CHAR = '<';
-        const char NODE_CLOSING_CHAR = '>';
-        
         std::string ReadFile(std::string path);
         std::string& TrimLeft(std::string& s);
         std::string& TrimRight(std::string& s);

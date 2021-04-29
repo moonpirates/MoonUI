@@ -9,7 +9,6 @@ Lexer::Lexer()
 XmlDoc Lexer::Parse(std::string path)
 {
 	std::string xml = ReadFile(path);
-    std::cout << xml << std::endl << "--------------------------------------------" << std::endl;
     
 	XmlDoc xmlDoc;
 	
@@ -159,29 +158,31 @@ void Lexer::ParseMarkup(std::string markup, std::shared_ptr<XmlElement> element)
 	std::smatch matches;
 	int i = 0;
 	
-	std::cout << "In: " << markup << std::endl;
-	
 	while (std::regex_search(markup, matches, markupRegex))
 	{
-		std::cout << "\t'" << matches[0] << "'" << std::endl;
-		
-		std::cout << matches.size() << std::endl;
-		
-		for (size_t j = 0; j < matches.size(); j++)
-		{
-			std::cout << "[" << matches.str(j) << "]" << std::endl;
-		}
-		
 		if (i == 0)
 		{
 			element->Tag = matches[0];
 		}
 		else
 		{
+			std::string key;
+			std::string value;
 			
+			if (!matches.str(1).empty() && !matches.str(2).empty())
+			{
+				key = matches.str(1);
+				value = matches.str(2);
+			}
+			else
+			{
+				key = matches.str(0);
+				value = "";
+			}
+			
+			element->Attributes.insert({key, value});
 		}
 		
-		std::cout << "-------" << std::endl;
 		markup = matches.suffix();
 		i++;
 	}

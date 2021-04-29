@@ -32,6 +32,28 @@ std::string XmlElement::GetDebugInfo()
     }
 	
 	info += " | Children: " + std::to_string(Children.size()) + " | ID: " + std::to_string(ID);
+	
+	if (Attributes.size() > 0)
+	{
+		info += " | ";
+		
+		std::map<std::string, std::string>::iterator it;
+		
+		for (it = Attributes.begin(); it != Attributes.end(); it++)
+		{
+			info += it->first;
+			
+			if (!it->second.empty())
+			{
+				info += ": " + it->second;
+			}
+			
+			if (std::next(it) != Attributes.end())
+			{
+				info += ", ";
+			}
+		}
+	}
     
     return info;
 }
