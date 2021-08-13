@@ -7,7 +7,7 @@
 #include <regex>
 #include "XmlDoc.hpp"
 #include "XmlElement.hpp"
-#include "Macros.h"
+#include <Macros/Macros.h>
 
 namespace moonpirates
 {
