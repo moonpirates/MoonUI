@@ -195,9 +195,9 @@
     <ClInclude Include="src\Utils\Systems\Renderable.h" />
     <ClInclude Include="src\Utils\Systems\Updatable.h" />
     <ClInclude Include="src\Utils\DeprecatedTime.h" />
-    <ClInclude Include="src\XmlParser\Lexer.hpp" />
-    <ClInclude Include="src\XmlParser\XmlDoc.hpp" />
-    <ClInclude Include="src\XmlParser\XmlElement.hpp" />
+    <ClInclude Include="src\XmlParser\Lexer.h" />
+    <ClInclude Include="src\XmlParser\XmlDoc.h" />
+    <ClInclude Include="src\XmlParser\XmlElement.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="test.xml" />

@@ -1,7 +1,5 @@
 #include <iostream>
-#include "XmlParser/Lexer.hpp"
-
-using namespace moonpirates;
+#include "XmlParser/Lexer.h"
 
 int main(int argc, const char* argv[])
 {

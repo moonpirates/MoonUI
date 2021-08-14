@@ -1,4 +1,4 @@
-<root toot>
+<root toot="">
 	<childA id="childA" class="a class">
 		<grandchild>kleinkindcontent</grandchild>
 	</childA>

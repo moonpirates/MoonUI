@@ -1,6 +1,4 @@
-#include "XmlElement.hpp"
-
-using namespace moonpirates;
+#include "XmlElement.h"
 
 XmlElement::XmlElement(std::shared_ptr<XmlElement> parent) : Parent(parent), ID(nextID++)
 {

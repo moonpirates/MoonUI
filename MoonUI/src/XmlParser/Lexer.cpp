@@ -1,10 +1,4 @@
-#include "Lexer.hpp"
-
-using namespace moonpirates;
-
-Lexer::Lexer()
-{
-}
+#include "Lexer.h"
 
 XmlDoc Lexer::Parse(std::string path)
 {

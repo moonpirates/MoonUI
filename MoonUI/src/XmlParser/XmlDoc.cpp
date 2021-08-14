@@ -1,12 +1,9 @@
-#include "XmlDoc.hpp"
-
-using namespace moonpirates;
+#include "XmlDoc.h"
 
 XmlDoc::XmlDoc()
 {
 	Root = std::make_shared<XmlElement>(nullptr);
 }
-
 
 std::string XmlDoc::GetDebugInfo()
 {
