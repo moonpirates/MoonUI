@@ -12,7 +12,7 @@ std::string XmlDoc::GetDebugInfo()
 {
 	std::string debugInfo = "";
 	RecursiveLogElement(Root, 0, debugInfo);
-	
+
 	return debugInfo;
 }
 
@@ -20,7 +20,7 @@ void XmlDoc::RecursiveLogElement(std::shared_ptr<XmlElement> element, int depth,
 {
 	std::string tabs = std::string(depth, '\t');
 	debugInfo += tabs + element->GetDebugInfo() + "\n";
-	
+
 	if (element->Children.size() > 0)
 	{
 		depth++;

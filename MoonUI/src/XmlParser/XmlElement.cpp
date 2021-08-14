@@ -14,46 +14,46 @@ void XmlElement::AddChild(std::shared_ptr<XmlElement> child)
 
 void XmlElement::RemoveChild(std::shared_ptr<XmlElement> child)
 {
-    Children.remove(child);
+	Children.remove(child);
 }
 
 std::string XmlElement::GetDebugInfo()
 {
-    std::string info = "Tag: '" + Tag + "'";
-    
-    if (Content != "")
-    {
-        info +=  " | Content: '" + Content + "'";
-    }
-    
-    if (Parent != nullptr)
-    {
-        info += " | Parent '" + Parent->Tag + "'";
-    }
-	
+	std::string info = "Tag: '" + Tag + "'";
+
+	if (Content != "")
+	{
+		info += " | Content: '" + Content + "'";
+	}
+
+	if (Parent != nullptr)
+	{
+		info += " | Parent '" + Parent->Tag + "'";
+	}
+
 	info += " | Children: " + std::to_string(Children.size()) + " | ID: " + std::to_string(ID);
-	
+
 	if (Attributes.size() > 0)
 	{
 		info += " | ";
-		
+
 		std::map<std::string, std::string>::iterator it;
-		
+
 		for (it = Attributes.begin(); it != Attributes.end(); it++)
 		{
 			info += it->first;
-			
+
 			if (!it->second.empty())
 			{
 				info += ": " + it->second;
 			}
-			
+
 			if (std::next(it) != Attributes.end())
 			{
 				info += ", ";
 			}
 		}
 	}
-    
-    return info;
+
+	return info;
 }

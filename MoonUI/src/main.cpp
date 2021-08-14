@@ -3,11 +3,11 @@
 
 using namespace moonpirates;
 
-int main(int argc, const char * argv[])
+int main(int argc, const char* argv[])
 {
-    Lexer lexer;
-    XmlDoc xmlDoc = lexer.Parse("test.xml");
+	Lexer lexer;
+	XmlDoc xmlDoc = lexer.Parse("test.xml");
 	std::cout << "--------------------------------------------" << std::endl;
 	std::cout << xmlDoc.GetDebugInfo();
-    return 0;
+	return 0;
 }
