@@ -14,6 +14,7 @@ public:
 	Window();
 	~Window();
 	void Render() override;
+	void Stop();
 private:
 	Utils::CallbackService& callbackService;
 	GLFWwindow* window;
