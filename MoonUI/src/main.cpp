@@ -2,7 +2,7 @@
 #include "XmlParser/Lexer.h"
 #include <Systems/CallbackService.h>
 #include <Services/GlobalServiceLocator.h>
-#include "View/Canvas.h"
+#include "View/Window.h"
 
 int main(int argc, const char* argv[])
 {
@@ -11,12 +11,7 @@ int main(int argc, const char* argv[])
 	std::cout << "--------------------------------------------" << std::endl;
 	std::cout << xmlDoc.GetDebugInfo();
 
-	Utils::CallbackService callbackService = Utils::GlobalServiceLocator::Get<Utils::CallbackService>();
-
-	Canvas canvas = Canvas();
-	callbackService.AddRenderable(canvas);
-
-	callbackService.Start();
+	Window window = Window();
 
 	return 0;
 }
