@@ -163,6 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\OpenGL\ShaderUtils.cpp" />
     <ClCompile Include="src\View\Canvas.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Utils\DeprecatedTime.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="src\View\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\OpenGL\ShaderUtils.h" />
     <ClInclude Include="src\View\Canvas.h" />
     <ClInclude Include="src\Utils\Events\Dispatcher.h" />
     <ClInclude Include="src\Utils\Events\Event.h" />
