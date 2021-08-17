@@ -178,6 +178,7 @@
     <ClCompile Include="src\View\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\OpenGL\ShaderSource.h" />
     <ClInclude Include="src\OpenGL\ShaderUtils.h" />
     <ClInclude Include="src\View\Canvas.h" />
     <ClInclude Include="src\Utils\Events\Dispatcher.h" />
@@ -207,6 +208,9 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="test.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Shaders\Basic.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

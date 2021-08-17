@@ -58,6 +58,8 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 		0 // offset for attribute we're interested in
 	);
 
+	ShaderUtils::ParseShaderFile("res/Shaders/Basic.shader");
+
 	// Setup shaders
 	std::string vertexShaderSource =
 		"#version 330 core\n"

@@ -44,3 +44,33 @@ unsigned int ShaderUtils::CreateShader(const std::string& vertexShaderSource, co
 
 	return programID;
 }
+
+ShaderSource ShaderUtils::ParseShaderFile(const std::string& path)
+{
+	std::ifstream stream(path);
+	std::stringstream stringStream[2];
+	std::string line;
+	int index = -1;
+	while (getline(stream, line))
+	{
+		std::cout << line << std::endl;
+		if (line.find("#shader") != std::string::npos)
+		{
+			if (line.find("vertex") != std::string::npos)
+			{
+				index = 0;
+			}
+			else if (line.find("fragment") != std::string::npos)
+			{
+				index = 1;
+			}
+		}
+
+		stringStream[index] << line << '\n';
+	}
+
+	std::cout << stringStream[0].str().length() << std::endl;
+	std::cout << stringStream[1].str().length() << std::endl;
+
+	return { stringStream[0].str(), stringStream[1].str() };
+}

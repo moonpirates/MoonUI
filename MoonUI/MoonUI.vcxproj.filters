@@ -134,8 +134,14 @@
     <ClInclude Include="src\OpenGL\ShaderUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\OpenGL\ShaderSource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="test.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Shaders\Basic.shader" />
   </ItemGroup>
 </Project>
