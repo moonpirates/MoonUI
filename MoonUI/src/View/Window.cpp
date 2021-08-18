@@ -37,8 +37,15 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 	float positions[] =
 	{
 		-0.5f, -0.5f,
-		0.0f, 0.5f,
-		0.5f, -0.5f
+		0.5f, -0.5f,
+		0.5f, 0.5f,
+		-0.5f, 0.5f
+	};
+
+	unsigned int indices[] =
+	{
+		0, 1, 2,
+		2, 3, 0
 	};
 
 	// Create vertex buffer
@@ -58,6 +65,12 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 		0 // offset for attribute we're interested in
 	);
 
+	// Create index buffer object
+	unsigned int indexBuffer;
+	glGenBuffers(1, &indexBuffer);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
 	ShaderSource shaderSource = ShaderUtils::ParseShaderFile("res/Shaders/Basic.shader");
 	shaderID = ShaderUtils::CreateShader(shaderSource.VertexSource, shaderSource.FragmentSource);
 
@@ -74,17 +87,19 @@ Window::~Window()
 
 void Window::Render()
 {
-	/* Render here */
+	// Clear
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	// Render num indices
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
-	/* Swap front and back buffers */
+	// Swap front and back buffer
 	glfwSwapBuffers(window);
 
-	/* Poll for and process events */
+	// Poll for events
 	glfwPollEvents();
 
+	// Wrap things up if we close the window
 	if (glfwWindowShouldClose(window))
 	{
 		std::cout << "Bye!" << std::endl;
