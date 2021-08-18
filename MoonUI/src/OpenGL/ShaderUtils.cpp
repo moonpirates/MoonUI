@@ -65,12 +65,12 @@ ShaderSource ShaderUtils::ParseShaderFile(const std::string& path)
 				index = 1;
 			}
 		}
+		else if (index >= 0)
+		{
+			stringStream[index] << line << '\n';
+		}
 
-		stringStream[index] << line << '\n';
 	}
-
-	std::cout << stringStream[0].str().length() << std::endl;
-	std::cout << stringStream[1].str().length() << std::endl;
 
 	return { stringStream[0].str(), stringStream[1].str() };
 }

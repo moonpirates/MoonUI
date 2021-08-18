@@ -58,30 +58,8 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 		0 // offset for attribute we're interested in
 	);
 
-	ShaderUtils::ParseShaderFile("res/Shaders/Basic.shader");
-
-	// Setup shaders
-	std::string vertexShaderSource =
-		"#version 330 core\n"
-		"\n"
-		"layout(location = 0) in vec4 position;"
-		"\n"
-		"void main()\n"
-		"{\n"
-		"	gl_Position = position;\n"
-		"}\n";
-
-	std::string fragmentShaderSource =
-		"#version 330 core\n"
-		"\n"
-		"layout(location = 0) out vec4 color;"
-		"\n"
-		"void main()\n"
-		"{\n"
-		"	color = vec4(1.0, 0.0, 0.0, 1.0);\n"
-		"}\n";
-
-	shaderID = ShaderUtils::CreateShader(vertexShaderSource, fragmentShaderSource);
+	ShaderSource shaderSource = ShaderUtils::ParseShaderFile("res/Shaders/Basic.shader");
+	shaderID = ShaderUtils::CreateShader(shaderSource.VertexSource, shaderSource.FragmentSource);
 
 	glUseProgram(shaderID);
 
