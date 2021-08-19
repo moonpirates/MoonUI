@@ -53,7 +53,6 @@ ShaderSource ShaderUtils::ParseShaderFile(const std::string& path)
 	int index = -1;
 	while (getline(stream, line))
 	{
-		std::cout << line << std::endl;
 		if (line.find("#shader") != std::string::npos)
 		{
 			if (line.find("vertex") != std::string::npos)

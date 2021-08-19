@@ -163,6 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\OpenGL\OpenGLDebug.cpp" />
     <ClCompile Include="src\OpenGL\ShaderUtils.cpp" />
     <ClCompile Include="src\View\Canvas.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="src\View\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\OpenGL\OpenGLDebug.h" />
     <ClInclude Include="src\OpenGL\ShaderSource.h" />
     <ClInclude Include="src\OpenGL\ShaderUtils.h" />
     <ClInclude Include="src\View\Canvas.h" />

@@ -76,6 +76,8 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 
 	glUseProgram(shaderID);
 
+	OpenGLDebug::Enable();
+
 	callbackService.Start();
 }
 
@@ -91,7 +93,7 @@ void Window::Render()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	// Render num indices
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+	glDrawElements(GL_TRIANGLES, 6, GL_INT, nullptr);
 
 	// Swap front and back buffer
 	glfwSwapBuffers(window);

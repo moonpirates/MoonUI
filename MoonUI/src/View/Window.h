@@ -8,6 +8,7 @@
 #include <Services/GlobalServiceLocator.h>
 #include <Macros/Macros.h>
 #include "../OpenGL/ShaderUtils.h"
+#include "../OpenGL/OpenGLDebug.h"
 
 class Window : public Utils::Renderable
 {
