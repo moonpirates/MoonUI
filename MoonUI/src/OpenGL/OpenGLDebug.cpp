@@ -1,15 +1,14 @@
 #include "OpenGLDebug.h"
 
+// NOTE in order for this to work, you need to add the following before the window is created: glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE)
 void OpenGLDebug::Enable()
 {
-	glEnable(GL_DEBUG_OUTPUT);
 	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 	glDebugMessageCallback(OpenGLDebug::GLDebugMessageCallback, nullptr);
 }
 
 void OpenGLDebug::Disable()
 {
-	glDisable(GL_DEBUG_OUTPUT);
 	glDisable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 }
 
