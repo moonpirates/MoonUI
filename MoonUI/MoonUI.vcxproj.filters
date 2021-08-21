@@ -27,7 +27,7 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Utils\DeprecatedTime.cpp">
+    <ClCompile Include="src\Utils\TimeUtil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Utils\StateMachine\Example\OffState.cpp">
@@ -98,7 +98,7 @@
     <ClInclude Include="src\XmlParser\XmlElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\DeprecatedTime.h">
+    <ClInclude Include="src\Utils\TimeUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Utils\Services\BaseService.h">

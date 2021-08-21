@@ -71,11 +71,19 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
+	// Create shader program
 	ShaderSource shaderSource = ShaderUtils::ParseShaderFile("res/Shaders/Basic.shader");
 	shaderID = ShaderUtils::CreateShader(shaderSource.VertexSource, shaderSource.FragmentSource);
-
 	glUseProgram(shaderID);
 
+	int location = glGetUniformLocation(shaderID, "u_Color");
+	if (location == -1)
+	{
+		LOG_ERROR("Could not find uniform.");
+		return;
+	}
+	glUniform4f(location, 0.2f, 0.3f, 0.9f, 1.0f);
+	
 	OpenGLDebug::Enable();
 
 	callbackService.Start();

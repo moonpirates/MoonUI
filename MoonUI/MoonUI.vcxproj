@@ -167,7 +167,7 @@
     <ClCompile Include="src\OpenGL\ShaderUtils.cpp" />
     <ClCompile Include="src\View\Canvas.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Utils\DeprecatedTime.cpp" />
+    <ClCompile Include="src\Utils\TimeUtil.cpp" />
     <ClCompile Include="src\Utils\StateMachine\Example\OffState.cpp" />
     <ClCompile Include="src\Utils\StateMachine\Example\OnState.cpp" />
     <ClCompile Include="src\Utils\StateMachine\Example\SwitchStateMachine.cpp" />
@@ -202,7 +202,7 @@
     <ClInclude Include="src\Utils\Systems\CallbackService.h" />
     <ClInclude Include="src\Utils\Systems\Renderable.h" />
     <ClInclude Include="src\Utils\Systems\Updatable.h" />
-    <ClInclude Include="src\Utils\DeprecatedTime.h" />
+    <ClInclude Include="src\Utils\TimeUtil.h" />
     <ClInclude Include="src\XmlParser\Lexer.h" />
     <ClInclude Include="src\XmlParser\XmlDoc.h" />
     <ClInclude Include="src\XmlParser\XmlElement.h" />
