@@ -103,6 +103,12 @@ void Window::Render()
 	// Clear
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	float red = (std::sin(Utils::TimeUtil::TimeSinceStart * 4) + 1) / 2;
+	float green = (std::sin(Utils::TimeUtil::TimeSinceStart * 2.4f) + 1) / 2;
+	float blue = (std::sin(Utils::TimeUtil::TimeSinceStart * 1) + 1) / 2;
+	int location = glGetUniformLocation(shaderID, "u_Color");
+	glUniform4f(location, red, green, blue, 1.0f);
+
 	// Render num indices
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
