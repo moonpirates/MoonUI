@@ -9,6 +9,8 @@
 #include <Macros/Macros.h>
 #include "../OpenGL/ShaderUtils.h"
 #include "../OpenGL/OpenGLDebug.h"
+#include "../OpenGL/VertexBuffer.h"
+#include "../OpenGL/IndexBuffer.h"
 
 class Window : public Utils::Renderable
 {
@@ -18,7 +20,10 @@ public:
 	void Render() override;
 	void Stop();
 private:
+	VertexBuffer* vertexBuffer;
+	IndexBuffer* indexBuffer;
 	unsigned int shaderID;
+	unsigned int vertexArrayObjectID;
 
 	Utils::CallbackService& callbackService;
 	GLFWwindow* window;

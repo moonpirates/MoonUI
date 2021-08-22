@@ -105,6 +105,6 @@ void APIENTRY OpenGLDebug::GLDebugMessageCallback(GLenum source, GLenum type, GL
 		break;
 	}
 
-	std::cout << id << ": " << _type << " of " << _severity << " sevirity, raised from " << _source << ": " << message << std::endl;
+	std::cout << id << ": " << _type << " of " << _severity << " severity, raised from " << _source << ": " << message << std::endl;
 }
 

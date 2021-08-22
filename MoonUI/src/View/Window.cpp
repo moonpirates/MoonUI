@@ -11,7 +11,10 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 	}
 
 	// Needed for OpenGL's debugger to attach
-	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
+	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, true);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Create a windowed mode window and its OpenGL context
 	window = glfwCreateWindow(640, 480, "Hello MoonUI!", nullptr, nullptr);
@@ -51,11 +54,11 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 		2, 3, 0
 	};
 
+	glGenVertexArrays(1, &vertexArrayObjectID);
+	glBindVertexArray(vertexArrayObjectID);
+
 	// Create vertex buffer
-	unsigned int buffer;
-	glGenBuffers(1, &buffer);
-	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
+	vertexBuffer = new VertexBuffer(positions, sizeof(positions));
 
 	// Setup attributes
 	glEnableVertexAttribArray(0);
@@ -69,10 +72,7 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 	);
 
 	// Create index buffer object
-	unsigned int indexBuffer;
-	glGenBuffers(1, &indexBuffer);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	indexBuffer = new IndexBuffer(indices, 6);
 
 	// Create shader program
 	ShaderSource shaderSource = ShaderUtils::ParseShaderFile("res/Shaders/Basic.shader");
@@ -87,6 +87,11 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 	}
 	glUniform4f(location, 0.2f, 0.3f, 0.9f, 1.0f);
 	
+	glBindVertexArray(0);
+	glUseProgram(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
 	OpenGLDebug::Enable();
 
 	callbackService.Start();
@@ -94,6 +99,9 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 
 Window::~Window()
 {
+	delete vertexBuffer;
+	delete indexBuffer;
+
 	glDeleteProgram(shaderID);
 	Stop();
 }
@@ -103,11 +111,15 @@ void Window::Render()
 	// Clear
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	glUseProgram(shaderID);
 	float red = (std::sin(Utils::TimeUtil::TimeSinceStart * 4) + 1) / 2;
 	float green = (std::sin(Utils::TimeUtil::TimeSinceStart * 2.4f) + 1) / 2;
 	float blue = (std::sin(Utils::TimeUtil::TimeSinceStart * 1) + 1) / 2;
 	int location = glGetUniformLocation(shaderID, "u_Color");
 	glUniform4f(location, red, green, blue, 1.0f);
+
+	glBindVertexArray(vertexArrayObjectID);
+	indexBuffer->Bind();
 
 	// Render num indices
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
