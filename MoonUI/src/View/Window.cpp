@@ -58,18 +58,12 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 	glBindVertexArray(vertexArrayObjectID);
 
 	// Create vertex buffer
+	vertexArray = new VertexArray();
 	vertexBuffer = new VertexBuffer(positions, sizeof(positions));
 
-	// Setup attributes
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(
-		0, // shader attribute index
-		2, // num components for attribute
-		GL_FLOAT, // type used for attribute
-		GL_FALSE, // 
-		sizeof(float) * 2, // byte offset to hop
-		0 // offset for attribute we're interested in
-	);
+	VertexBufferLayout vertexBufferLayout;
+	vertexBufferLayout.Push<float>(2);
+	vertexArray->AddBuffer(*vertexBuffer, vertexBufferLayout);
 
 	// Create index buffer object
 	indexBuffer = new IndexBuffer(indices, 6);
@@ -118,7 +112,7 @@ void Window::Render()
 	int location = glGetUniformLocation(shaderID, "u_Color");
 	glUniform4f(location, red, green, blue, 1.0f);
 
-	glBindVertexArray(vertexArrayObjectID);
+	vertexArray->Bind();
 	indexBuffer->Bind();
 
 	// Render num indices

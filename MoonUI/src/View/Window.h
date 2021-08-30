@@ -11,6 +11,7 @@
 #include "../OpenGL/OpenGLDebug.h"
 #include "../OpenGL/VertexBuffer.h"
 #include "../OpenGL/IndexBuffer.h"
+#include "../OpenGL/VertexArray.h"
 
 class Window : public Utils::Renderable
 {
@@ -21,6 +22,7 @@ public:
 	void Stop();
 private:
 	VertexBuffer* vertexBuffer;
+	VertexArray* vertexArray;
 	IndexBuffer* indexBuffer;
 	unsigned int shaderID;
 	unsigned int vertexArrayObjectID;
