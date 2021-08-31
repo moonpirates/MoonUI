@@ -7,11 +7,12 @@
 #include <Systems/CallbackService.h>
 #include <Services/GlobalServiceLocator.h>
 #include <Macros/Macros.h>
-#include "../OpenGL/ShaderUtils.h"
+#include "../OpenGL/Shader.h"
 #include "../OpenGL/OpenGLDebug.h"
 #include "../OpenGL/VertexBuffer.h"
 #include "../OpenGL/IndexBuffer.h"
 #include "../OpenGL/VertexArray.h"
+#include "../OpenGL/Renderer.h"
 
 class Window : public Utils::Renderable
 {
@@ -21,11 +22,11 @@ public:
 	void Render() override;
 	void Stop();
 private:
+	Renderer* renderer;
 	VertexBuffer* vertexBuffer;
-	VertexArray* vertexArray;
 	IndexBuffer* indexBuffer;
-	unsigned int shaderID;
-	unsigned int vertexArrayObjectID;
+	VertexArray* vertexArray;
+	Shader* shader;
 
 	Utils::CallbackService& callbackService;
 	GLFWwindow* window;

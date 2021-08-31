@@ -54,9 +54,6 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 		2, 3, 0
 	};
 
-	glGenVertexArrays(1, &vertexArrayObjectID);
-	glBindVertexArray(vertexArrayObjectID);
-
 	// Create vertex buffer
 	vertexArray = new VertexArray();
 	vertexBuffer = new VertexBuffer(positions, sizeof(positions));
@@ -69,22 +66,15 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 	indexBuffer = new IndexBuffer(indices, 6);
 
 	// Create shader program
-	ShaderSource shaderSource = ShaderUtils::ParseShaderFile("res/Shaders/Basic.shader");
-	shaderID = ShaderUtils::CreateShader(shaderSource.VertexSource, shaderSource.FragmentSource);
-	glUseProgram(shaderID);
+	shader = new Shader("res/Shaders/Basic.shader");
+	shader->Bind();
 
-	int location = glGetUniformLocation(shaderID, "u_Color");
-	if (location == -1)
-	{
-		LOG_ERROR("Could not find uniform.");
-		return;
-	}
-	glUniform4f(location, 0.2f, 0.3f, 0.9f, 1.0f);
-	
-	glBindVertexArray(0);
-	glUseProgram(0);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+ 	vertexArray->Unbind();
+	vertexBuffer->Unbind();
+	indexBuffer->Unbind();
+	shader->Unbind();
+
+	renderer = new Renderer();
 
 	OpenGLDebug::Enable();
 
@@ -93,30 +83,26 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 
 Window::~Window()
 {
+	delete vertexArray;
 	delete vertexBuffer;
 	delete indexBuffer;
+	delete shader;
+	delete renderer;
 
-	glDeleteProgram(shaderID);
 	Stop();
 }
 
 void Window::Render()
 {
-	// Clear
-	glClear(GL_COLOR_BUFFER_BIT);
+	renderer->Clear();
 
-	glUseProgram(shaderID);
 	float red = (std::sin(Utils::TimeUtil::TimeSinceStart * 4) + 1) / 2;
 	float green = (std::sin(Utils::TimeUtil::TimeSinceStart * 2.4f) + 1) / 2;
 	float blue = (std::sin(Utils::TimeUtil::TimeSinceStart * 1) + 1) / 2;
-	int location = glGetUniformLocation(shaderID, "u_Color");
-	glUniform4f(location, red, green, blue, 1.0f);
+	shader->Bind();
+	shader->SetUniform4f("u_Color", red, green, blue, 1.0f);
 
-	vertexArray->Bind();
-	indexBuffer->Bind();
-
-	// Render num indices
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+	renderer->Draw(*vertexArray, *indexBuffer, *shader);
 
 	// Swap front and back buffer
 	glfwSwapBuffers(window);

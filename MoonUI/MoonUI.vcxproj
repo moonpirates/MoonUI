@@ -163,9 +163,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\OpenGL\Renderer.cpp" />
+    <ClCompile Include="src\OpenGL\Shader.cpp" />
     <ClCompile Include="src\OpenGL\IndexBuffer.cpp" />
     <ClCompile Include="src\OpenGL\OpenGLDebug.cpp" />
-    <ClCompile Include="src\OpenGL\ShaderUtils.cpp" />
     <ClCompile Include="src\View\Canvas.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Utils\TimeUtil.cpp" />
@@ -182,10 +183,11 @@
     <ClCompile Include="src\OpenGL\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\OpenGL\Renderer.h" />
+    <ClInclude Include="src\OpenGL\Shader.h" />
     <ClInclude Include="src\OpenGL\IndexBuffer.h" />
     <ClInclude Include="src\OpenGL\OpenGLDebug.h" />
     <ClInclude Include="src\OpenGL\ShaderSource.h" />
-    <ClInclude Include="src\OpenGL\ShaderUtils.h" />
     <ClInclude Include="src\OpenGL\VertexBufferLayoutElement.h" />
     <ClInclude Include="src\View\Canvas.h" />
     <ClInclude Include="src\Utils\Events\Dispatcher.h" />
