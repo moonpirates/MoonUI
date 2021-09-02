@@ -167,6 +167,7 @@
     <ClCompile Include="src\OpenGL\Shader.cpp" />
     <ClCompile Include="src\OpenGL\IndexBuffer.cpp" />
     <ClCompile Include="src\OpenGL\OpenGLDebug.cpp" />
+    <ClCompile Include="src\Vendor\stb\stb_image.cpp" />
     <ClCompile Include="src\View\Canvas.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Utils\TimeUtil.cpp" />
@@ -181,6 +182,7 @@
     <ClCompile Include="src\View\Window.cpp" />
     <ClCompile Include="src\OpenGL\VertexBuffer.cpp" />
     <ClCompile Include="src\OpenGL\VertexArray.cpp" />
+    <ClCompile Include="src\OpenGL\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\OpenGL\Renderer.h" />
@@ -189,6 +191,7 @@
     <ClInclude Include="src\OpenGL\OpenGLDebug.h" />
     <ClInclude Include="src\OpenGL\ShaderSource.h" />
     <ClInclude Include="src\OpenGL\VertexBufferLayoutElement.h" />
+    <ClInclude Include="src\Vendor\stb\stb_image.h" />
     <ClInclude Include="src\View\Canvas.h" />
     <ClInclude Include="src\Utils\Events\Dispatcher.h" />
     <ClInclude Include="src\Utils\Events\Event.h" />
@@ -217,6 +220,7 @@
     <ClInclude Include="src\OpenGL\VertexBuffer.h" />
     <ClInclude Include="src\OpenGL\VertexArray.h" />
     <ClInclude Include="src\OpenGL\VertexBufferLayout.h" />
+    <ClInclude Include="src\OpenGL\Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="test.xml" />

@@ -39,13 +39,13 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 	LOG("Initialized!");
 	LOG(glGetString(GL_VERSION));
 
-	// Create position vertices
+	// Create position vertices and UV maps
 	float positions[] =
 	{
-		-0.5f, -0.5f,
-		0.5f, -0.5f,
-		0.5f, 0.5f,
-		-0.5f, 0.5f
+		-0.5f, -0.5f, 0.0f, 0.0f, // bottom left
+		0.5f, -0.5f, 1.0f, 0.0f, //bottom right
+		0.5f, 0.5f, 1.0f, 1.0f, // top right
+		-0.5f, 0.5f, 0.0f, 1.0f // top left
 	};
 
 	unsigned int indices[] =
@@ -54,11 +54,17 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 		2, 3, 0
 	};
 
+	// Enable blending
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	// Create vertex buffer
 	vertexArray = new VertexArray();
 	vertexBuffer = new VertexBuffer(positions, sizeof(positions));
 
+	// Create vertex buffer layout
 	VertexBufferLayout vertexBufferLayout;
+	vertexBufferLayout.Push<float>(2);
 	vertexBufferLayout.Push<float>(2);
 	vertexArray->AddBuffer(*vertexBuffer, vertexBufferLayout);
 
@@ -68,6 +74,12 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 	// Create shader program
 	shader = new Shader("res/Shaders/Basic.shader");
 	shader->Bind();
+
+	// Create texture
+	texture = new Texture("res/Textures/blisk-logo.png");
+	texture->Bind();
+	shader->SetUniform1i("u_Texture", 0);
+
 
  	vertexArray->Unbind();
 	vertexBuffer->Unbind();
@@ -87,6 +99,7 @@ Window::~Window()
 	delete vertexBuffer;
 	delete indexBuffer;
 	delete shader;
+	delete texture;
 	delete renderer;
 
 	Stop();

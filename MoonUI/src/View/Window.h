@@ -13,6 +13,7 @@
 #include "../OpenGL/IndexBuffer.h"
 #include "../OpenGL/VertexArray.h"
 #include "../OpenGL/Renderer.h"
+#include "../OpenGL/Texture.h"
 
 class Window : public Utils::Renderable
 {
@@ -27,6 +28,7 @@ private:
 	IndexBuffer* indexBuffer;
 	VertexArray* vertexArray;
 	Shader* shader;
+	Texture* texture;
 
 	Utils::CallbackService& callbackService;
 	GLFWwindow* window;
