@@ -1,6 +1,6 @@
 #include "Window.h"
 
-Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator::Get<Utils::CallbackService>())
+Window::Window() : window(nullptr), windowWidth(0), windowHeight(0), callbackService(Utils::GlobalServiceLocator::Get<Utils::CallbackService>())
 {
 	callbackService.AddRenderable(*this);
 
@@ -40,12 +40,20 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 	LOG(glGetString(GL_VERSION));
 
 	// Create position vertices and UV maps
+// 	float positions[] =
+// 	{
+// 		-0.5f, -0.5f, 0.0f, 0.0f, // bottom left
+// 		0.5f, -0.5f, 1.0f, 0.0f, //bottom right
+// 		0.5f, 0.5f, 1.0f, 1.0f, // top right
+// 		-0.5f, 0.5f, 0.0f, 1.0f // top left
+// 	};
+
 	float positions[] =
 	{
-		-0.5f, -0.5f, 0.0f, 0.0f, // bottom left
-		0.5f, -0.5f, 1.0f, 0.0f, //bottom right
-		0.5f, 0.5f, 1.0f, 1.0f, // top right
-		-0.5f, 0.5f, 0.0f, 1.0f // top left
+		0.0f,	0.0f,	0.0f,	0.0f, // bottom left
+		100.0f,	0.0f,	1.0f,	0.0f, // bottom right
+		100.0f,	100.0f,	1.0f,	1.0f, // top right
+		0.0f,	100.0f,	0.0f,	1.0f // top left
 	};
 
 	unsigned int indices[] =
@@ -71,6 +79,11 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 	// Create index buffer object
 	indexBuffer = new IndexBuffer(indices, 6);
 
+	projectionMatrix = new glm::mat4(glm::ortho(0.0f, 640.0f, 0.0f, 480.0f, -1.0f, 1.0f));
+	//projectionMatrix = new glm::mat4(glm::ortho(0.0f, 4.0f, 0.0f, 3.0f, -1.0f, 1.0f));
+	modelMatrix = new glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)));
+	viewMatrix = new glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)));
+
 	// Create shader program
 	shader = new Shader("res/Shaders/Basic.shader");
 	shader->Bind();
@@ -79,7 +92,6 @@ Window::Window() : window(nullptr), callbackService(Utils::GlobalServiceLocator:
 	texture = new Texture("res/Textures/blisk-logo.png");
 	texture->Bind();
 	shader->SetUniform1i("u_Texture", 0);
-
 
  	vertexArray->Unbind();
 	vertexBuffer->Unbind();
@@ -107,6 +119,8 @@ Window::~Window()
 
 void Window::Render()
 {
+	glfwGetWindowSize(window, &windowWidth, &windowHeight);
+
 	renderer->Clear();
 
 	float red = (std::sin(Utils::TimeUtil::TimeSinceStart * 4) + 1) / 2;
@@ -114,6 +128,7 @@ void Window::Render()
 	float blue = (std::sin(Utils::TimeUtil::TimeSinceStart * 1) + 1) / 2;
 	shader->Bind();
 	shader->SetUniform4f("u_Color", red, green, blue, 1.0f);
+	shader->SetUniformMat4f("u_MVP", *projectionMatrix * *viewMatrix * *modelMatrix);
 
 	renderer->Draw(*vertexArray, *indexBuffer, *shader);
 
@@ -135,4 +150,14 @@ void Window::Stop()
 {
 	glfwTerminate();
 	callbackService.Stop();
+}
+
+int Window::GetWindowWidth()
+{
+	return windowWidth;
+}
+
+int Window::GetWindowHeight()
+{
+	return windowHeight;
 }

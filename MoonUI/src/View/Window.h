@@ -14,6 +14,8 @@
 #include "../OpenGL/VertexArray.h"
 #include "../OpenGL/Renderer.h"
 #include "../OpenGL/Texture.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 class Window : public Utils::Renderable
 {
@@ -22,6 +24,8 @@ public:
 	~Window();
 	void Render() override;
 	void Stop();
+	int GetWindowWidth();
+	int GetWindowHeight();
 private:
 	Renderer* renderer;
 	VertexBuffer* vertexBuffer;
@@ -29,6 +33,12 @@ private:
 	VertexArray* vertexArray;
 	Shader* shader;
 	Texture* texture;
+	glm::mat4* projectionMatrix;
+	glm::mat4* modelMatrix;
+	glm::mat4* viewMatrix;
+
+	int windowWidth;
+	int windowHeight;
 
 	Utils::CallbackService& callbackService;
 	GLFWwindow* window;

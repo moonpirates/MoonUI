@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <GL/glew.h>
-#include "../Vendor/stb/stb_image.h"
+#include <stb/stb_image.h>
 
 class Texture
 {
