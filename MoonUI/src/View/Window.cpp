@@ -17,18 +17,19 @@ Window::Window() : window(nullptr), windowWidth(0), windowHeight(0), callbackSer
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Create a windowed mode window and its OpenGL context
-	window = glfwCreateWindow(640, 480, "Hello MoonUI!", nullptr, nullptr);
+	window = glfwCreateWindow(1280, 720, "Hello MoonUI!", nullptr, nullptr);
 	if (!window)
 	{
 		glfwTerminate();
 		return;
 	}
 
+	UpdateWindowSize();
+
 	// Make the window's context current
 	glfwMakeContextCurrent(window);
 
 	GLenum glInitResult = glewInit();
-	
 	if (glInitResult != GLEW_OK)
 	{
 		LOG_ERROR("Could not init GLEW.");
@@ -39,14 +40,6 @@ Window::Window() : window(nullptr), windowWidth(0), windowHeight(0), callbackSer
 	LOG("Initialized!");
 	LOG(glGetString(GL_VERSION));
 
-	// Create position vertices and UV maps
-// 	float positions[] =
-// 	{
-// 		-0.5f, -0.5f, 0.0f, 0.0f, // bottom left
-// 		0.5f, -0.5f, 1.0f, 0.0f, //bottom right
-// 		0.5f, 0.5f, 1.0f, 1.0f, // top right
-// 		-0.5f, 0.5f, 0.0f, 1.0f // top left
-// 	};
 
 	float positions[] =
 	{
@@ -119,7 +112,7 @@ Window::~Window()
 
 void Window::Render()
 {
-	glfwGetWindowSize(window, &windowWidth, &windowHeight);
+	UpdateWindowSize();
 
 	renderer->Clear();
 
@@ -150,6 +143,11 @@ void Window::Stop()
 {
 	glfwTerminate();
 	callbackService.Stop();
+}
+
+void Window::UpdateWindowSize()
+{
+	glfwGetWindowSize(window, &windowWidth, &windowHeight);
 }
 
 int Window::GetWindowWidth()

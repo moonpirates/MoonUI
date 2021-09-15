@@ -26,6 +26,7 @@ public:
 	void Stop();
 	int GetWindowWidth();
 	int GetWindowHeight();
+
 private:
 	Renderer* renderer;
 	VertexBuffer* vertexBuffer;
@@ -42,5 +43,7 @@ private:
 
 	Utils::CallbackService& callbackService;
 	GLFWwindow* window;
+	
+	void UpdateWindowSize();
 };
 

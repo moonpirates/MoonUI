@@ -1,6 +1,5 @@
 #include "Shader.h"
 
-
 Shader::Shader(const std::string& path) : id(0), path(path)
 {
 	ShaderSource shaderSource = ParseShaderFile(path);
