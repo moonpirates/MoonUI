@@ -648,9 +648,6 @@
     <None Include="src\Vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GoogleTest\GoogleTest.vcxproj">
-      <Project>{c61454e5-12ad-49b8-90d6-be980a66d70f}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\Utils\Utils.vcxproj">
       <Project>{6e2fd856-4b8b-4d34-8e93-2bcf5a95205c}</Project>
     </ProjectReference>
