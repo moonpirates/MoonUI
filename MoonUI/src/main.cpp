@@ -3,6 +3,7 @@
 #include <Systems/CallbackService.h>
 #include <Services/GlobalServiceLocator.h>
 #include "View/Window.h"
+#include <TestUtils.h>
 
 int main(int argc, const char* argv[])
 {
@@ -10,6 +11,8 @@ int main(int argc, const char* argv[])
 	XmlDoc xmlDoc = lexer.Parse("test.xml");
 	std::cout << "--------------------------------------------" << std::endl;
 	std::cout << xmlDoc.GetDebugInfo();
+
+	TestUtils::Print();
 
 	Window window = Window();
 
