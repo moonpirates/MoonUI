@@ -2,5 +2,5 @@
 
 TEST(Aap, Noot)
 {
-	EXPECT_EQ(3, 1 + 1);
+	EXPECT_EQ(2, 1 + 1);
 }
