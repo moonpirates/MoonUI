@@ -97,13 +97,13 @@
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Utils\src\;$(ProjectDir)src\Vendor\;$(ProjectDir)src\Utils\;$(SolutionDir)Dependencies\GLFW\include\;$(SolutionDir)Dependencies\GLEW\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Utils\Utils\src\;$(ProjectDir)src\Vendor\;$(SolutionDir)Dependencies\GLFW\include\;$(SolutionDir)Dependencies\GLEW\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib-vc2019-x86\;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GoogleTest.lib;glew32s.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib</AdditionalDependencies>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -115,7 +115,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Utils\src\;$(ProjectDir)src\Vendor\;$(ProjectDir)src\Utils\;$(SolutionDir)Dependencies\GLFW\include\;$(SolutionDir)Dependencies\GLEW\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Utils\Utils\src\;$(ProjectDir)src\Vendor\;$(SolutionDir)Dependencies\GLFW\include\;$(SolutionDir)Dependencies\GLEW\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -123,7 +123,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib-vc2019-x86\;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GoogleTest.lib;glew32s.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib</AdditionalDependencies>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -133,13 +133,13 @@
       <PreprocessorDefinitions>GLEW_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Utils\src\;$(ProjectDir)src\Vendor\;$(ProjectDir)src\Utils\;$(SolutionDir)Dependencies\GLFW\include\;$(SolutionDir)Dependencies\GLEW\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Utils\Utils\src\;$(ProjectDir)src\Vendor\;$(SolutionDir)Dependencies\GLFW\include\;$(SolutionDir)Dependencies\GLEW\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib-vc2019-x64\;$(SolutionDir)Dependencies\GLEW\lib\Release\x64\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GoogleTest.lib;glew32s.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib</AdditionalDependencies>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -151,7 +151,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Utils\src\;$(ProjectDir)src\Vendor\;$(ProjectDir)src\Utils\;$(SolutionDir)Dependencies\GLFW\include\;$(SolutionDir)Dependencies\GLEW\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Utils\Utils\src\;$(ProjectDir)src\Vendor\;$(SolutionDir)Dependencies\GLFW\include\;$(SolutionDir)Dependencies\GLEW\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -159,7 +159,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib-vc2019-x64\;$(SolutionDir)Dependencies\GLEW\lib\Release\x64\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GoogleTest.lib;glew32s.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib</AdditionalDependencies>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -171,12 +171,6 @@
     <ClCompile Include="src\Vendor\stb\stb_image.cpp" />
     <ClCompile Include="src\View\Canvas.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Utils\TimeUtil.cpp" />
-    <ClCompile Include="src\Utils\StateMachine\Example\OffState.cpp" />
-    <ClCompile Include="src\Utils\StateMachine\Example\OnState.cpp" />
-    <ClCompile Include="src\Utils\StateMachine\Example\SwitchStateMachine.cpp" />
-    <ClCompile Include="src\Utils\StateMachine\Example\ToggleSwitchCondition.cpp" />
-    <ClCompile Include="src\Utils\Systems\CallbackService.cpp" />
     <ClCompile Include="src\XmlParser\Lexer.cpp" />
     <ClCompile Include="src\XmlParser\XmlDoc.cpp" />
     <ClCompile Include="src\XmlParser\XmlElement.cpp" />
@@ -476,26 +470,7 @@
     <ClInclude Include="src\Vendor\glm\vector_relational.hpp" />
     <ClInclude Include="src\Vendor\stb\stb_image.h" />
     <ClInclude Include="src\View\Canvas.h" />
-    <ClInclude Include="src\Utils\Events\Dispatcher.h" />
-    <ClInclude Include="src\Utils\Events\Event.h" />
-    <ClInclude Include="src\Utils\Events\GlobalEvents.h" />
-    <ClInclude Include="src\Utils\Logging\Logger.h" />
-    <ClInclude Include="src\Utils\Macros\Macros.h" />
-    <ClInclude Include="src\Utils\Services\BaseService.h" />
-    <ClInclude Include="src\Utils\Services\GlobalServiceLocator.h" />
-    <ClInclude Include="src\Utils\Services\ServiceLocator.h" />
-    <ClInclude Include="src\Utils\StateMachine\BaseCondition.h" />
-    <ClInclude Include="src\Utils\StateMachine\BaseState.h" />
-    <ClInclude Include="src\Utils\StateMachine\Example\OffState.h" />
-    <ClInclude Include="src\Utils\StateMachine\Example\OnState.h" />
-    <ClInclude Include="src\Utils\StateMachine\Example\SwitchStateMachine.h" />
-    <ClInclude Include="src\Utils\StateMachine\Example\ToggleSwitchCondition.h" />
     <ClInclude Include="src\Utils\StateMachine\StackedCondition.h" />
-    <ClInclude Include="src\Utils\StateMachine\StateMachine.h" />
-    <ClInclude Include="src\Utils\Systems\CallbackService.h" />
-    <ClInclude Include="src\Utils\Systems\Renderable.h" />
-    <ClInclude Include="src\Utils\Systems\Updatable.h" />
-    <ClInclude Include="src\Utils\TimeUtil.h" />
     <ClInclude Include="src\XmlParser\Lexer.h" />
     <ClInclude Include="src\XmlParser\XmlDoc.h" />
     <ClInclude Include="src\XmlParser\XmlElement.h" />
@@ -648,7 +623,7 @@
     <None Include="src\Vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Utils\Utils.vcxproj">
+    <ProjectReference Include="..\Utils\Utils\Utils.vcxproj">
       <Project>{6e2fd856-4b8b-4d34-8e93-2bcf5a95205c}</Project>
     </ProjectReference>
   </ItemGroup>
