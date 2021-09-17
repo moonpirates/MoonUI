@@ -171,9 +171,6 @@
     <ClCompile Include="src\Vendor\stb\stb_image.cpp" />
     <ClCompile Include="src\View\Canvas.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\XmlParser\Lexer.cpp" />
-    <ClCompile Include="src\XmlParser\XmlDoc.cpp" />
-    <ClCompile Include="src\XmlParser\XmlElement.cpp" />
     <ClCompile Include="src\View\Window.cpp" />
     <ClCompile Include="src\OpenGL\VertexBuffer.cpp" />
     <ClCompile Include="src\OpenGL\VertexArray.cpp" />
@@ -471,17 +468,11 @@
     <ClInclude Include="src\Vendor\stb\stb_image.h" />
     <ClInclude Include="src\View\Canvas.h" />
     <ClInclude Include="src\Utils\StateMachine\StackedCondition.h" />
-    <ClInclude Include="src\XmlParser\Lexer.h" />
-    <ClInclude Include="src\XmlParser\XmlDoc.h" />
-    <ClInclude Include="src\XmlParser\XmlElement.h" />
     <ClInclude Include="src\View\Window.h" />
     <ClInclude Include="src\OpenGL\VertexBuffer.h" />
     <ClInclude Include="src\OpenGL\VertexArray.h" />
     <ClInclude Include="src\OpenGL\VertexBufferLayout.h" />
     <ClInclude Include="src\OpenGL\Texture.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="test.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Shaders\Basic.shader" />
