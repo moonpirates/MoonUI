@@ -1,6 +1,7 @@
 #include "Window.h"
 
-Window::Window() : window(nullptr), windowWidth(0), windowHeight(0), callbackService(Utils::GlobalServiceLocator::Get<Utils::CallbackService>())
+Window::Window() : 
+	window(nullptr), windowWidth(0), windowHeight(0), callbackService(Utils::GlobalServiceLocator::Get<Utils::CallbackService>())
 {
 	callbackService.AddRenderable(*this);
 
@@ -72,9 +73,8 @@ Window::Window() : window(nullptr), windowWidth(0), windowHeight(0), callbackSer
 	// Create index buffer object
 	indexBuffer = new IndexBuffer(indices, 6);
 
-	projectionMatrix = new glm::mat4(glm::ortho(0.0f, 640.0f, 0.0f, 480.0f, -1.0f, 1.0f));
-	//projectionMatrix = new glm::mat4(glm::ortho(0.0f, 4.0f, 0.0f, 3.0f, -1.0f, 1.0f));
-	modelMatrix = new glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)));
+	// Create projection and view matrix
+	projectionMatrix = new glm::mat4(glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f, -1.0f, 1.0f));
 	viewMatrix = new glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)));
 
 	// Create shader program
@@ -116,14 +116,18 @@ void Window::Render()
 
 	renderer->Clear();
 
-	float red = (std::sin(Utils::TimeUtil::TimeSinceStart * 4) + 1) / 2;
-	float green = (std::sin(Utils::TimeUtil::TimeSinceStart * 2.4f) + 1) / 2;
-	float blue = (std::sin(Utils::TimeUtil::TimeSinceStart * 1) + 1) / 2;
 	shader->Bind();
-	shader->SetUniform4f("u_Color", red, green, blue, 1.0f);
-	shader->SetUniformMat4f("u_MVP", *projectionMatrix * *viewMatrix * *modelMatrix);
-
+	
+	shader->SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
+	
+	glm::mat4 modelMatrix = glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)));
+	shader->SetUniformMat4f("u_MVP", *projectionMatrix * *viewMatrix * modelMatrix);
 	renderer->Draw(*vertexArray, *indexBuffer, *shader);
+
+	modelMatrix = glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(200, 0, 0)));
+	shader->SetUniformMat4f("u_MVP", *projectionMatrix * *viewMatrix * modelMatrix);
+	renderer->Draw(*vertexArray, *indexBuffer, *shader);
+
 
 	// Swap front and back buffer
 	glfwSwapBuffers(window);

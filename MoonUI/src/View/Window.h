@@ -35,7 +35,6 @@ private:
 	Shader* shader;
 	Texture* texture;
 	glm::mat4* projectionMatrix;
-	glm::mat4* modelMatrix;
 	glm::mat4* viewMatrix;
 
 	int windowWidth;
