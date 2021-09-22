@@ -21,7 +21,7 @@ void VertexArray::AddBuffer(const VertexBuffer& vertexBuffer, const VertexBuffer
 	for (unsigned int i = 0; i < elements.size(); i++)
 	{
 		const auto& element = elements[i];
-		glEnableVertexAttribArray(i);
+		glEnableVertexArrayAttrib(vertexBuffer.GetVertexBufferID(), i);
 		glVertexAttribPointer(
 			i, 
 			element.Count, 

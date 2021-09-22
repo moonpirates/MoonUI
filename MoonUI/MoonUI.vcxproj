@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -163,13 +163,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\OpenGL\MeshGenerator.cpp" />
+    <ClCompile Include="src\Components\RenderComponent.cpp" />
     <ClCompile Include="src\OpenGL\Renderer.cpp" />
     <ClCompile Include="src\OpenGL\Shader.cpp" />
     <ClCompile Include="src\OpenGL\IndexBuffer.cpp" />
     <ClCompile Include="src\OpenGL\OpenGLDebug.cpp" />
     <ClCompile Include="src\Vendor\glm\detail\glm.cpp" />
     <ClCompile Include="src\Vendor\stb\stb_image.cpp" />
-    <ClCompile Include="src\View\Canvas.cpp" />
+    <ClCompile Include="src\Components\Canvas.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\View\Window.cpp" />
     <ClCompile Include="src\OpenGL\VertexBuffer.cpp" />
@@ -177,12 +179,15 @@
     <ClCompile Include="src\OpenGL\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\OpenGL\MeshGenerator.h" />
+    <ClInclude Include="src\Components\RenderComponent.h" />
     <ClInclude Include="src\OpenGL\Renderer.h" />
     <ClInclude Include="src\OpenGL\Shader.h" />
     <ClInclude Include="src\OpenGL\IndexBuffer.h" />
     <ClInclude Include="src\OpenGL\OpenGLDebug.h" />
     <ClInclude Include="src\OpenGL\ShaderSource.h" />
     <ClInclude Include="src\OpenGL\VertexBufferLayoutElement.h" />
+    <ClInclude Include="src\OpenGL\Vertexh.h" />
     <ClInclude Include="src\Vendor\glm\common.hpp" />
     <ClInclude Include="src\Vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="src\Vendor\glm\detail\compute_vector_relational.hpp" />
@@ -466,7 +471,7 @@
     <ClInclude Include="src\Vendor\glm\vec4.hpp" />
     <ClInclude Include="src\Vendor\glm\vector_relational.hpp" />
     <ClInclude Include="src\Vendor\stb\stb_image.h" />
-    <ClInclude Include="src\View\Canvas.h" />
+    <ClInclude Include="src\Components\Canvas.h" />
     <ClInclude Include="src\Utils\StateMachine\StackedCondition.h" />
     <ClInclude Include="src\View\Window.h" />
     <ClInclude Include="src\OpenGL\VertexBuffer.h" />

@@ -41,19 +41,10 @@ Window::Window() :
 	LOG("Initialized!");
 	LOG(glGetString(GL_VERSION));
 
-
-	float positions[] =
-	{
-		0.0f,	0.0f,	0.0f,	0.0f, // bottom left
-		100.0f,	0.0f,	1.0f,	0.0f, // bottom right
-		100.0f,	100.0f,	1.0f,	1.0f, // top right
-		0.0f,	100.0f,	0.0f,	1.0f // top left
-	};
-
 	unsigned int indices[] =
 	{
-		0, 1, 2,
-		2, 3, 0
+		0, 1, 2, 2, 3, 0,
+		4, 5, 6, 6, 7, 4
 	};
 
 	// Enable blending
@@ -62,16 +53,14 @@ Window::Window() :
 
 	// Create vertex buffer
 	vertexArray = new VertexArray();
-	vertexBuffer = new VertexBuffer(positions, sizeof(positions));
+	vertexBuffer = new VertexBuffer(sizeof(Vertex) * 1000); // hard coded to a max of 1000 vertices
 
 	// Create vertex buffer layout
-	VertexBufferLayout vertexBufferLayout;
-	vertexBufferLayout.Push<float>(2);
-	vertexBufferLayout.Push<float>(2);
+	VertexBufferLayout vertexBufferLayout = Vertex::GetVertexBufferLayout();
 	vertexArray->AddBuffer(*vertexBuffer, vertexBufferLayout);
 
 	// Create index buffer object
-	indexBuffer = new IndexBuffer(indices, 6);
+	indexBuffer = new IndexBuffer(indices, 12);
 
 	// Create projection and view matrix
 	projectionMatrix = new glm::mat4(glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f, -1.0f, 1.0f));
@@ -110,24 +99,35 @@ Window::~Window()
 	Stop();
 }
 
+void Window::PreRender()
+{
+
+}
+
 void Window::Render()
 {
 	UpdateWindowSize();
 
+	auto quadA = MeshGenerator::GetQuad(200, 400, 100, 100);
+	auto quadB = MeshGenerator::GetQuad(300, 200, 50, 300);
+
+	Vertex vertices[8];
+	memcpy(vertices, quadA.data(), quadA.size() * sizeof(Vertex));
+	memcpy(vertices + quadA.size(), quadB.data(), quadB.size() * sizeof(Vertex));
+
+	// Set dynamic vertex buffer
+	vertexBuffer->Bind();
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+
 	renderer->Clear();
 
 	shader->Bind();
-	
 	shader->SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
 	
 	glm::mat4 modelMatrix = glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)));
 	shader->SetUniformMat4f("u_MVP", *projectionMatrix * *viewMatrix * modelMatrix);
+	
 	renderer->Draw(*vertexArray, *indexBuffer, *shader);
-
-	modelMatrix = glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(200, 0, 0)));
-	shader->SetUniformMat4f("u_MVP", *projectionMatrix * *viewMatrix * modelMatrix);
-	renderer->Draw(*vertexArray, *indexBuffer, *shader);
-
 
 	// Swap front and back buffer
 	glfwSwapBuffers(window);
