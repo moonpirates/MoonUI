@@ -51,16 +51,18 @@ Window::Window() :
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	const int NUM_VERTICES = 1000;  // hard coded to a max of 1000 vertices
+
 	// Create vertex buffer
 	vertexArray = new VertexArray();
-	vertexBuffer = new VertexBuffer(sizeof(Vertex) * 1000); // hard coded to a max of 1000 vertices
+	vertexBuffer = new VertexBuffer(sizeof(Vertex) * NUM_VERTICES);
 
 	// Create vertex buffer layout
 	VertexBufferLayout vertexBufferLayout = Vertex::GetVertexBufferLayout();
 	vertexArray->AddBuffer(*vertexBuffer, vertexBufferLayout);
 
 	// Create index buffer object
-	indexBuffer = new IndexBuffer(indices, 12);
+	indexBuffer = new IndexBuffer(NUM_VERTICES * 6);
 
 	// Create projection and view matrix
 	projectionMatrix = new glm::mat4(glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f, -1.0f, 1.0f));
@@ -115,9 +117,16 @@ void Window::Render()
 	memcpy(vertices, quadA.data(), quadA.size() * sizeof(Vertex));
 	memcpy(vertices + quadA.size(), quadB.data(), quadB.size() * sizeof(Vertex));
 
+	unsigned int indices[12];
+	memcpy(indices, MeshGenerator::GetQuadIndices(0).data(), 6 * sizeof(float));
+	memcpy(indices + 6, MeshGenerator::GetQuadIndices(1).data(), 6 * sizeof(float));
+	
 	// Set dynamic vertex buffer
 	vertexBuffer->Bind();
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+
+	indexBuffer->Bind();
+	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(indices), indices);
 
 	renderer->Clear();
 

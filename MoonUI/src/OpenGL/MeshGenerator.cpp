@@ -25,14 +25,16 @@ std::array<Vertex, 4> MeshGenerator::GetQuad(float x, float y, float width, floa
 	return { v0, v1, v2, v3 };
 }
 
-std::array<int, 6> MeshGenerator::GetQuadIndices(int index)
+std::array<int, 6> MeshGenerator::GetQuadIndices(int quadIndex)
 {
+	int offset = 4 * quadIndex;
+
 	return {
-		0 * index,
-		1 * index,
-		2 * index,
-		2 * index,
-		3 * index,
-		0 * index
+		0 + offset,
+		1 + offset,
+		2 + offset,
+		2 + offset,
+		3 + offset,
+		0 + offset
 	};
 }

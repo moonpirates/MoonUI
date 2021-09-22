@@ -7,7 +7,7 @@ class IndexBuffer
 {
 public:
 	IndexBuffer() = default;
-	IndexBuffer(const unsigned int* data, unsigned int count);
+	IndexBuffer(unsigned int count);
 	~IndexBuffer();
 	void Bind() const;
 	void Unbind() const;
