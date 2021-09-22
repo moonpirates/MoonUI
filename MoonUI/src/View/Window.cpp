@@ -41,12 +41,6 @@ Window::Window() :
 	LOG("Initialized!");
 	LOG(glGetString(GL_VERSION));
 
-	unsigned int indices[] =
-	{
-		0, 1, 2, 2, 3, 0,
-		4, 5, 6, 6, 7, 4
-	};
-
 	// Enable blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -117,16 +111,17 @@ void Window::Render()
 	memcpy(vertices, quadA.data(), quadA.size() * sizeof(Vertex));
 	memcpy(vertices + quadA.size(), quadB.data(), quadB.size() * sizeof(Vertex));
 
-	unsigned int indices[12];
-	memcpy(indices, MeshGenerator::GetQuadIndices(0).data(), 6 * sizeof(float));
-	memcpy(indices + 6, MeshGenerator::GetQuadIndices(1).data(), 6 * sizeof(float));
+	auto indices = MeshGenerator::GetQuadIndices(0, 2);
 	
 	// Set dynamic vertex buffer
 	vertexBuffer->Bind();
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
 
 	indexBuffer->Bind();
-	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(indices), indices);
+	unsigned int ind[12];
+	memcpy(ind, indices.data(), 12 * sizeof(unsigned int));
+
+	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(ind), ind);
 
 	renderer->Clear();
 
