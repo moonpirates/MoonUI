@@ -7,7 +7,7 @@ class IndexBuffer
 {
 public:
 	IndexBuffer() = default;
-	IndexBuffer(unsigned int count);
+	IndexBuffer(const unsigned int* data, size_t count);
 	~IndexBuffer();
 	void Bind() const;
 	void Unbind() const;
@@ -15,6 +15,6 @@ public:
 
 private:
 	unsigned int indexBufferID;
-	unsigned int count;
+	size_t count;
 };
 

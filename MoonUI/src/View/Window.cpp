@@ -45,7 +45,9 @@ Window::Window() :
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	const int NUM_VERTICES = 1000;  // hard coded to a max of 1000 vertices
+	const int NUM_QUADS = 500; // hard coded max num quads
+	const int NUM_VERTICES = NUM_QUADS * 4;
+	const int NUM_INDICES = NUM_QUADS * 6;
 
 	// Create vertex buffer
 	vertexArray = new VertexArray();
@@ -56,7 +58,8 @@ Window::Window() :
 	vertexArray->AddBuffer(*vertexBuffer, vertexBufferLayout);
 
 	// Create index buffer object
-	indexBuffer = new IndexBuffer(NUM_VERTICES * 6);
+	std::array<unsigned int, NUM_INDICES> indices = MeshGenerator::GetQuadIndices<NUM_INDICES>();
+	indexBuffer = new IndexBuffer(indices.data(), indices.size());
 
 	// Create projection and view matrix
 	projectionMatrix = new glm::mat4(glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f, -1.0f, 1.0f));
@@ -104,31 +107,23 @@ void Window::Render()
 {
 	UpdateWindowSize();
 
-	auto quadA = MeshGenerator::GetQuad(200, 400, 100, 100);
+	// Quads
+	auto quadA = MeshGenerator::GetQuad(0, 0, 100, 100);
 	auto quadB = MeshGenerator::GetQuad(300, 200, 50, 300);
 
 	Vertex vertices[8];
 	memcpy(vertices, quadA.data(), quadA.size() * sizeof(Vertex));
 	memcpy(vertices + quadA.size(), quadB.data(), quadB.size() * sizeof(Vertex));
 
-	auto indices = MeshGenerator::GetQuadIndices(0, 2);
-	
 	// Set dynamic vertex buffer
 	vertexBuffer->Bind();
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
 
-	indexBuffer->Bind();
-	unsigned int ind[12];
-	memcpy(ind, indices.data(), 12 * sizeof(unsigned int));
-
-	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(ind), ind);
-
 	renderer->Clear();
 
+	glm::mat4 modelMatrix = glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)));
 	shader->Bind();
 	shader->SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
-	
-	glm::mat4 modelMatrix = glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)));
 	shader->SetUniformMat4f("u_MVP", *projectionMatrix * *viewMatrix * modelMatrix);
 	
 	renderer->Draw(*vertexArray, *indexBuffer, *shader);
