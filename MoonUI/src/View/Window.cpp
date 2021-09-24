@@ -45,41 +45,11 @@ Window::Window() :
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	const int NUM_QUADS = 500; // hard coded max num quads
-	const int NUM_VERTICES = NUM_QUADS * 4;
-	const int NUM_INDICES = NUM_QUADS * 6;
-
-	// Create vertex buffer
-	vertexArray = new VertexArray();
-	vertexBuffer = new VertexBuffer(sizeof(Vertex) * NUM_VERTICES);
-
-	// Create vertex buffer layout
-	VertexBufferLayout vertexBufferLayout = Vertex::GetVertexBufferLayout();
-	vertexArray->AddBuffer(*vertexBuffer, vertexBufferLayout);
-
-	// Create index buffer object
-	std::array<unsigned int, NUM_INDICES> indices = MeshGenerator::GetQuadIndices<NUM_INDICES>();
-	indexBuffer = new IndexBuffer(indices.data(), indices.size());
-
-	// Create projection and view matrix
-	projectionMatrix = new glm::mat4(glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f, -1.0f, 1.0f));
-	viewMatrix = new glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)));
-
-	// Create shader program
-	shader = new Shader("res/Shaders/Basic.shader");
-	shader->Bind();
-
-	// Create texture
-	texture = new Texture("res/Textures/blisk-logo.png");
-	texture->Bind();
-	shader->SetUniform1i("u_Texture", 0);
-
- 	vertexArray->Unbind();
-	vertexBuffer->Unbind();
-	indexBuffer->Unbind();
-	shader->Unbind();
-
 	renderer = new Renderer();
+	renderer->Init();
+
+	renderer->PushQuad({ 0, 0 }, { 100, 100 }, { 1.0f, 1.0f, 1.0f, 1.0f, });
+	renderer->PushQuad({ 200, 300 }, { 200, 50 }, { 1.0f, 1.0f, 1.0f, 1.0f, });
 
 	OpenGLDebug::Enable();
 
@@ -88,11 +58,7 @@ Window::Window() :
 
 Window::~Window()
 {
-	delete vertexArray;
-	delete vertexBuffer;
-	delete indexBuffer;
-	delete shader;
-	delete texture;
+	renderer->Shutdown();
 	delete renderer;
 
 	Stop();
@@ -107,26 +73,7 @@ void Window::Render()
 {
 	UpdateWindowSize();
 
-	// Quads
-	auto quadA = MeshGenerator::GetQuad(0, 0, 100, 100);
-	auto quadB = MeshGenerator::GetQuad(300, 200, 50, 300);
-
-	Vertex vertices[8];
-	memcpy(vertices, quadA.data(), quadA.size() * sizeof(Vertex));
-	memcpy(vertices + quadA.size(), quadB.data(), quadB.size() * sizeof(Vertex));
-
-	// Set dynamic vertex buffer
-	vertexBuffer->Bind();
-	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-
-	renderer->Clear();
-
-	glm::mat4 modelMatrix = glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)));
-	shader->Bind();
-	shader->SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
-	shader->SetUniformMat4f("u_MVP", *projectionMatrix * *viewMatrix * modelMatrix);
-	
-	renderer->Draw(*vertexArray, *indexBuffer, *shader);
+	renderer->Draw();
 
 	// Swap front and back buffer
 	glfwSwapBuffers(window);

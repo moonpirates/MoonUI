@@ -3,8 +3,6 @@
 #include <iostream>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 
 #include <Systems/Renderable.h>
 #include <Systems/CallbackService.h>
@@ -35,13 +33,6 @@ public:
 
 private:
 	Renderer* renderer;
-	VertexBuffer* vertexBuffer;
-	IndexBuffer* indexBuffer;
-	VertexArray* vertexArray;
-	Shader* shader;
-	Texture* texture;
-	glm::mat4* projectionMatrix;
-	glm::mat4* viewMatrix;
 
 	int windowWidth;
 	int windowHeight;
