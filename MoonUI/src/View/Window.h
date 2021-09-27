@@ -18,6 +18,7 @@
 #include "../OpenGL/Texture.h"
 #include "../OpenGL/Vertexh.h"
 #include "../OpenGL/MeshGenerator.h"
+#include "../OpenGL/RenderService.h"
 
 
 class Window : public Utils::Renderable
@@ -27,12 +28,14 @@ public:
 	~Window();
 	void PreRender() override;
 	void Render() override;
+	void PostRender() override;
+	void Start();
 	void Stop();
 	int GetWindowWidth();
 	int GetWindowHeight();
 
 private:
-	Renderer* renderer;
+	Renderer& renderer;
 
 	int windowWidth;
 	int windowHeight;

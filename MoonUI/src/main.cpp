@@ -3,10 +3,14 @@
 #include <Systems/CallbackService.h>
 #include <Services/GlobalServiceLocator.h>
 #include "View/Window.h"
+#include "Example/TestSceneDecorator.h"
 
 int main(int argc, const char* argv[])
 {
-	Window window = Window();
+	Window window;
+	TestSceneDecorator testSceneDecorator;
+
+	window.Start();
 
 	return 0;
 }

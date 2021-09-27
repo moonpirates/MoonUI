@@ -163,9 +163,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Components\ImageComponent.cpp" />
     <ClCompile Include="src\OpenGL\MeshGenerator.cpp" />
-    <ClCompile Include="src\Components\RenderComponent.cpp" />
     <ClCompile Include="src\OpenGL\Renderer.cpp" />
+    <ClCompile Include="src\OpenGL\RenderService.cpp" />
     <ClCompile Include="src\OpenGL\Shader.cpp" />
     <ClCompile Include="src\OpenGL\IndexBuffer.cpp" />
     <ClCompile Include="src\OpenGL\OpenGLDebug.cpp" />
@@ -179,9 +180,10 @@
     <ClCompile Include="src\OpenGL\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Components\ImageComponent.h" />
     <ClInclude Include="src\OpenGL\MeshGenerator.h" />
-    <ClInclude Include="src\Components\RenderComponent.h" />
     <ClInclude Include="src\OpenGL\Renderer.h" />
+    <ClInclude Include="src\OpenGL\RenderService.h" />
     <ClInclude Include="src\OpenGL\Shader.h" />
     <ClInclude Include="src\OpenGL\IndexBuffer.h" />
     <ClInclude Include="src\OpenGL\OpenGLDebug.h" />
@@ -478,6 +480,7 @@
     <ClInclude Include="src\OpenGL\VertexArray.h" />
     <ClInclude Include="src\OpenGL\VertexBufferLayout.h" />
     <ClInclude Include="src\OpenGL\Texture.h" />
+    <ClInclude Include="src\Example\TestSceneDecorator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Shaders\Basic.shader" />

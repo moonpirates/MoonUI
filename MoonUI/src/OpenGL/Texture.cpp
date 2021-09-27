@@ -1,6 +1,7 @@
 #include "Texture.h"
 
-Texture::Texture(const std::string path) : id(0), path(path), localBuffer(nullptr), width(0), height(0), bitsPerPixel(0)
+Texture::Texture(const std::string path) :
+	id(0), path(path), localBuffer(nullptr), width(0), height(0), bitsPerPixel(0)
 {
 	stbi_set_flip_vertically_on_load(true); // 1 als dit niet werkt
 	localBuffer = stbi_load(path.c_str(), &width, &height, &bitsPerPixel, 4); // RGBA = 4 channels
