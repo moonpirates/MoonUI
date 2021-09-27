@@ -181,6 +181,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Components\ImageComponent.h" />
+    <ClInclude Include="src\OpenGL\GLEW.h" />
+    <ClInclude Include="src\OpenGL\GLFW.h" />
     <ClInclude Include="src\OpenGL\MeshGenerator.h" />
     <ClInclude Include="src\OpenGL\Renderer.h" />
     <ClInclude Include="src\OpenGL\RenderService.h" />

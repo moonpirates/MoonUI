@@ -19,7 +19,8 @@
 #include "../OpenGL/Vertexh.h"
 #include "../OpenGL/MeshGenerator.h"
 #include "../OpenGL/RenderService.h"
-
+#include "../OpenGL/GLEW.h"
+#include "../OpenGL/GLFW.h"
 
 class Window : public Utils::Renderable
 {
@@ -35,7 +36,7 @@ public:
 	int GetWindowHeight();
 
 private:
-	Renderer& renderer;
+	Renderer* renderer;
 
 	int windowWidth;
 	int windowHeight;

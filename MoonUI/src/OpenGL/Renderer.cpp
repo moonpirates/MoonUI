@@ -2,9 +2,9 @@
 
 void Renderer::Init()
 {
-	if (quadBufferPointer != nullptr)
+	if (IsInitialized)
 	{
-		LOG_ERROR("Tried to init renderer twice.");
+		LOG_WARN("Tried to init renderer twice.");
 		return;
 	}
 
@@ -40,10 +40,18 @@ void Renderer::Init()
 	vertexBuffer->Unbind();
 	indexBuffer->Unbind();
 	shader->Unbind();
+
+	IsInitialized = true;
 }
 
 void Renderer::Shutdown()
 {
+	if (!IsInitialized)
+	{
+		LOG_WARN("Has not yet been initialized.");
+		return;
+	}
+
 	vertexArray->Unbind();
 	vertexBuffer->Unbind();
 	indexBuffer->Unbind();
@@ -57,6 +65,8 @@ void Renderer::Shutdown()
 	delete shader;
 	delete texture;
 	delete[] quadBuffer;
+
+	IsInitialized = false;
 }
 
 void Renderer::BeginBatch()

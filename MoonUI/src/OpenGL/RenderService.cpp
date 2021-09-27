@@ -1,16 +1,22 @@
 #include "RenderService.h"
 
-RenderService::RenderService()
-{
-	renderer.Init();
-}
-
 RenderService::~RenderService()
 {
 	renderer.Shutdown();
 }
 
-Renderer& RenderService::GetRenderer()
+Renderer* RenderService::GetRenderer()
 {
-	return renderer;
+	if (!GLFW::IsInitialized || !GLEW::IsInitialized)
+	{
+		LOG_ERROR("Please initialize GLFW and GLEW first.");
+		return nullptr;
+	}
+
+	if (!renderer.IsInitialized)
+	{
+		renderer.Init();
+	}
+
+	return &renderer;
 }

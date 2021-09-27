@@ -17,8 +17,8 @@
 class Renderer
 {
 public:
-	Renderer() = default;
-
+	bool IsInitialized;
+	
 	void Init();
 	void Shutdown();
 
