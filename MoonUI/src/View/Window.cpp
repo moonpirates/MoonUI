@@ -32,6 +32,7 @@ Window::Window() :
 
 	UpdateWindowSize();
 	OpenGLDebug::Enable();
+	callbackService.AddUpdatable(*this);
 	callbackService.AddRenderable(*this);
 }
 
@@ -40,19 +41,9 @@ Window::~Window()
 	Stop();
 }
 
-void Window::PreRender()
-{
-	renderer->Clear();
-	renderer->BeginBatch();
-}
-
-void Window::Render()
+void Window::Update()
 {
 	UpdateWindowSize();
-
-	renderer->PushQuad({ 0, 0 }, { 100, 100 }, { 1.0f, 1.0f, 1.0f, 1.0f, });
-	renderer->PushQuad({ 200, 300 }, { 200, 50 }, { 1.0f, 1.0f, 1.0f, 1.0f, });
-	renderer->PushQuad({ 400, 400 }, { 50, 50 }, { 1.0f, 1.0f, 1.0f, 1.0f, });
 
 	// Poll for events
 	glfwPollEvents();
@@ -63,6 +54,12 @@ void Window::Render()
 		std::cout << "Bye!" << std::endl;
 		Stop();
 	}
+}
+
+void Window::PreRender()
+{
+	renderer->Clear();
+	renderer->BeginBatch();
 }
 
 void Window::PostRender()
@@ -81,6 +78,10 @@ void Window::Start()
 void Window::Stop()
 {
 	glfwTerminate();
+	
+	callbackService.RemoveUpdatable(*this);
+	callbackService.RemoveRenderable(*this);
+
 	callbackService.Stop();
 }
 

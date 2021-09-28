@@ -1,7 +1,4 @@
 #include <iostream>
-#include "XmlParser/Lexer.h"
-#include <Systems/CallbackService.h>
-#include <Services/GlobalServiceLocator.h>
 #include "View/Window.h"
 #include "Example/TestSceneDecorator.h"
 

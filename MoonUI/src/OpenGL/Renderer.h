@@ -5,14 +5,14 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "Math/Vector2.h"
-#include "Math/Vector4.h"
+#include "Math/Vector.h"
 #include "VertexArray.h"
 #include "IndexBuffer.h"
 #include "Shader.h"
-#include "Vertexh.h"
+#include "Vertex.h"
 #include "Texture.h"
 #include "MeshGenerator.h"
+#include "Colors/Color.h"
 
 class Renderer
 {
@@ -28,7 +28,7 @@ public:
 	void Flush();
 	void Clear() const;
 
-	void PushQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Vector4& color);
+	void PushQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color);
 
 private:
 	static const int MAX_NUM_QUADS = 1000; // Max number of quads per batch

@@ -1,7 +1,9 @@
 #pragma once
-#include "Systems/Scenes/SceneService.h"
 #include "../Components/Canvas.h"
-#include "../Components/ImageComponent.h"
+#include "../Components/ImageBehaviour.h"
+#include "Systems/Scenes/SceneService.h"
+#include "Systems/Components/Transform.h"
+#include "Colors/Color.h"
 
 using namespace Utils;
 
@@ -18,8 +20,14 @@ public:
 		canvasGO->AddComponent<Canvas>();
 
 		GameObject* backgroundGO = canvasGO->AddChild("Background");
-		backgroundGO->AddComponent<ImageComponent>();
+		ImageBehaviour* image = backgroundGO->AddComponent<ImageBehaviour>();
+		image->Color = Utils::Color::DarkGrey;
+		Transform* transform = backgroundGO->GetComponent<Transform>();
 
+		transform->Position = { 0, 0 };
+		transform->Size = { 1280, 720};
+
+		scene->PrintHierarchy();
 	}
 };
 

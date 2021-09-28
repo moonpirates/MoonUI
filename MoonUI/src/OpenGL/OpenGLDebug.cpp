@@ -1,4 +1,5 @@
 #include "OpenGLDebug.h"
+#include "Macros/Macros.h"
 
 // NOTE in order for this to work, you need to add the following before the window is created: glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE)
 void OpenGLDebug::Enable()
@@ -105,6 +106,15 @@ void APIENTRY OpenGLDebug::GLDebugMessageCallback(GLenum source, GLenum type, GL
 		break;
 	}
 
-	std::cout << id << ": " << _type << " of " << _severity << " severity, raised from " << _source << ": " << message << std::endl;
+	std::string log = id + ": " + _type + " of " + _severity + " severity, raised from " + _source + ": " + message;
+
+	if (severity == GL_DEBUG_SEVERITY_NOTIFICATION)
+	{
+		LOG(log);
+	}
+	else
+	{
+		LOG_ERROR(log);
+	}
 }
 

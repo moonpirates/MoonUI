@@ -9,6 +9,8 @@
 #include <Services/GlobalServiceLocator.h>
 #include <Macros/Macros.h>
 
+#include "../OpenGL/GLEW.h"
+#include "../OpenGL/GLFW.h"	
 #include "../OpenGL/Shader.h"
 #include "../OpenGL/OpenGLDebug.h"
 #include "../OpenGL/VertexBuffer.h"
@@ -16,19 +18,17 @@
 #include "../OpenGL/VertexArray.h"
 #include "../OpenGL/Renderer.h"
 #include "../OpenGL/Texture.h"
-#include "../OpenGL/Vertexh.h"
+#include "../OpenGL/Vertex.h"
 #include "../OpenGL/MeshGenerator.h"
 #include "../OpenGL/RenderService.h"
-#include "../OpenGL/GLEW.h"
-#include "../OpenGL/GLFW.h"
 
-class Window : public Utils::Renderable
+class Window : public Utils::Renderable, Utils::Updatable
 {
 public:
 	Window();
 	~Window();
+	void Update() override;
 	void PreRender() override;
-	void Render() override;
 	void PostRender() override;
 	void Start();
 	void Stop();

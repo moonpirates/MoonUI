@@ -88,7 +88,7 @@ void Renderer::Flush()
 
 	glm::mat4 modelMatrix = glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)));
 	shader->Bind();
-	shader->SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
+	//shader->SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
 	shader->SetUniformMat4f("u_MVP", *projectionMatrix * *viewMatrix * modelMatrix);
 
 	Draw(*vertexArray, *indexBuffer, *shader);
@@ -99,17 +99,17 @@ void Renderer::Clear() const
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Renderer::PushQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Vector4& color)
+void Renderer::PushQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color)
 {
 	if (quadCount + 1 > MAX_NUM_QUADS)
 	{
-		LOG("Reachec max nums, new batch!");
+		LOG("Reached max nums, new batch!");
 		EndBatch();
 		BeginBatch();
 	}
 
 
-	std::array<Vertex, 4> quad = MeshGenerator::GetQuad(position.X, position.Y, size.X, size.Y);
+	std::array<Vertex, 4> quad = MeshGenerator::GetQuad(position, size, color);
 
 	*quadBufferPointer = quad[0];
 	quadBufferPointer++;

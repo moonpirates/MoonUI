@@ -1,12 +1,14 @@
 #pragma once
 #include <array>
 #include <vector>
-#include "Vertexh.h"
+#include "Vertex.h"
+#include "Colors/Color.h"
+#include "Math/Vector.h"
 
 class MeshGenerator
 {
 public:
-	static std::array<Vertex, 4> GetQuad(float x, float y, float width, float height);
+	static std::array<Vertex, 4> GetQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color);
 
 	template <int NumIndices>
 	static std::array<unsigned int, NumIndices> GetQuadIndices()
