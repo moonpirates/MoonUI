@@ -5,6 +5,7 @@
 #include "Systems/Components/Transform.h"
 #include "Colors/Color.h"
 #include "Math/Math.h"
+#include "../../WiggleBehaviour.h"
 
 using namespace Utils;
 
@@ -56,6 +57,7 @@ public:
 	{
 		GameObject* child = parent->AddChild(name);
 		ImageBehaviour* image = child->AddComponent<ImageBehaviour>();
+		WiggleBehaviour* wiggle = child->AddComponent<WiggleBehaviour>();
 
 		Transform* transform = child->GetComponent<Transform>();
 		transform->Size = { 9, 9 };

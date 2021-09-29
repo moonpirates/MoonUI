@@ -63,6 +63,9 @@
     <ClCompile Include="src\Components\RenderBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WiggleBehaviour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Utils\StateMachine\StackedCondition.h">
@@ -975,6 +978,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Components\RenderBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WiggleBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
