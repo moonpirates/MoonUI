@@ -46,7 +46,7 @@ public:
 				float b = Math::Lerp(1.0f, 0.25f, tY);
 
 				pair.first->Color = { r, g, b, 1.0f };
-				pair.second->Position = { x * 10.0f, y * 10.0f };
+				pair.second->Position = { x * 10.0f + 1, y * 10.0f + 1 };
 			}
 		}
 
@@ -60,7 +60,7 @@ public:
 		WiggleBehaviour* wiggle = child->AddComponent<WiggleBehaviour>();
 
 		Transform* transform = child->GetComponent<Transform>();
-		transform->Size = { 9, 9 };
+		transform->Size = { 8, 8 };
 
 		return std::pair<ImageBehaviour*, Transform*> { image, transform };
 	}
