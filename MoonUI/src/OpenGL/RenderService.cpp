@@ -1,5 +1,11 @@
 #include "RenderService.h"
 
+RenderService::RenderService() :
+	window(nullptr), renderer()
+{
+
+}
+
 RenderService::~RenderService()
 {
 	renderer.Shutdown();

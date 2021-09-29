@@ -20,8 +20,9 @@ void Renderer::Init()
 	vertexArray->AddBuffer(*vertexBuffer, vertexBufferLayout);
 
 	// Create index buffer object
-	std::array<unsigned int, MAX_NUM_INDICES> indices = MeshGenerator::GetQuadIndices<MAX_NUM_INDICES>();
-	indexBuffer = new IndexBuffer(indices.data(), indices.size());
+	std::array<unsigned int, MAX_NUM_INDICES>* indices = MeshGenerator::GetQuadIndices<MAX_NUM_INDICES>();
+	indexBuffer = new IndexBuffer(indices->data(), indices->size());
+	delete indices;
 
 	// Create projection and view matrix
 	projectionMatrix = new glm::mat4(glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f, -1.0f, 1.0f));
@@ -92,22 +93,23 @@ void Renderer::Flush()
 	shader->SetUniformMat4f("u_MVP", *projectionMatrix * *viewMatrix * modelMatrix);
 
 	Draw(*vertexArray, *indexBuffer, *shader);
+
+	drawCount++;
 }
 
-void Renderer::Clear() const
+void Renderer::Clear()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+	drawCount = 0;
 }
 
 void Renderer::PushQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color)
 {
 	if (quadCount + 1 > MAX_NUM_QUADS)
 	{
-		LOG("Reached max nums, new batch!");
 		EndBatch();
 		BeginBatch();
 	}
-
 
 	std::array<Vertex, 4> quad = MeshGenerator::GetQuad(position, size, color);
 

@@ -4,6 +4,7 @@
 #include "Systems/Scenes/SceneService.h"
 #include "Systems/Components/Transform.h"
 #include "Colors/Color.h"
+#include "Math/Math.h"
 
 using namespace Utils;
 
@@ -21,13 +22,45 @@ public:
 
 		GameObject* backgroundGO = canvasGO->AddChild("Background");
 		ImageBehaviour* image = backgroundGO->AddComponent<ImageBehaviour>();
-		image->Color = Utils::Color::DarkGrey;
+		image->Color = Utils::Color::Black;
+
 		Transform* transform = backgroundGO->GetComponent<Transform>();
-
 		transform->Position = { 0, 0 };
-		transform->Size = { 1280, 720};
+		transform->Size = { 1280, 720 };
 
-		scene->PrintHierarchy();
+		float numTilesWidth = transform->Size.X / 10;
+		float numTilesHeight = transform->Size.Y / 10;
+
+		for (size_t y = 0; y < numTilesHeight; y++)
+		{
+			for (size_t x = 0; x < numTilesWidth; x++)
+			{
+				auto pair = AddImage(backgroundGO, std::string("Image " + std::to_string(x) + ", " + std::to_string(y)));
+
+				float tX = Math::InverseLerp(0, numTilesWidth, x);
+				float tY = Math::InverseLerp(0, numTilesHeight, y);
+
+				float r = Math::Lerp(0.25f, 1.0f, tX);
+				float g = 0.0f;
+				float b = Math::Lerp(1.0f, 0.25f, tY);
+
+				pair.first->Color = { r, g, b, 1.0f };
+				pair.second->Position = { x * 10.0f, y * 10.0f };
+			}
+		}
+
+		//scene->PrintHierarchy();
+	}
+
+	std::pair<ImageBehaviour*, Transform*> AddImage(GameObject* parent, const std::string name)
+	{
+		GameObject* child = parent->AddChild(name);
+		ImageBehaviour* image = child->AddComponent<ImageBehaviour>();
+
+		Transform* transform = child->GetComponent<Transform>();
+		transform->Size = { 9, 9 };
+
+		return std::pair<ImageBehaviour*, Transform*> { image, transform };
 	}
 };
 

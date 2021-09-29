@@ -8,7 +8,7 @@
 class RenderService : public Utils::BaseService
 {
 public:
-	RenderService() = default;
+	RenderService();
 	~RenderService();
 	Renderer* GetRenderer();
 	GLFWwindow* window;

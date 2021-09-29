@@ -26,7 +26,7 @@ public:
 	void EndBatch();
 	
 	void Flush();
-	void Clear() const;
+	void Clear();
 
 	void PushQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color);
 
