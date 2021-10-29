@@ -5,7 +5,7 @@
 #include "Systems/Components/Transform.h"
 #include "Colors/Color.h"
 #include "Math/Math.h"
-#include "../../WiggleBehaviour.h"
+#include "../Components/WiggleBehaviour.h"
 
 using namespace Utils;
 
@@ -25,12 +25,12 @@ public:
 		ImageBehaviour* image = backgroundGO->AddComponent<ImageBehaviour>();
 		image->Color = Utils::Color::Black;
 
-		Transform* transform = backgroundGO->GetComponent<Transform>();
-		transform->Position = { 0, 0 };
-		transform->Size = { 1280, 720 };
+		Transform* backgroundTransform = backgroundGO->GetComponent<Transform>();
+		backgroundTransform->Position = { 0, 0 };
+		backgroundTransform->Size = { 1280, 720 };
 
-		float numTilesWidth = transform->Size.X / 10;
-		float numTilesHeight = transform->Size.Y / 10;
+		float numTilesWidth = backgroundTransform->Size.X / tileSize.X;
+		float numTilesHeight = backgroundTransform->Size.Y / tileSize.Y;
 
 		for (size_t y = 0; y < numTilesHeight; y++)
 		{
@@ -46,7 +46,8 @@ public:
 				float b = Math::Lerp(1.0f, 0.25f, tY);
 
 				pair.first->Color = { r, g, b, 1.0f };
-				pair.second->Position = { x * 10.0f + 1, y * 10.0f + 1 };
+				pair.first->TextureID = (x + y) % 2 == 0 ? 0 : 1;
+				pair.second->Position = { x * tileSize.X + 1, y * tileSize.Y + 1 };
 			}
 		}
 
@@ -57,12 +58,14 @@ public:
 	{
 		GameObject* child = parent->AddChild(name);
 		ImageBehaviour* image = child->AddComponent<ImageBehaviour>();
-		WiggleBehaviour* wiggle = child->AddComponent<WiggleBehaviour>();
+		//WiggleBehaviour* wiggle = child->AddComponent<WiggleBehaviour>();
 
 		Transform* transform = child->GetComponent<Transform>();
-		transform->Size = { 8, 8 };
+		transform->Size = tileSize;
 
 		return std::pair<ImageBehaviour*, Transform*> { image, transform };
 	}
+private:
+	const Vector2 tileSize = { 64, 64 };
 };
 

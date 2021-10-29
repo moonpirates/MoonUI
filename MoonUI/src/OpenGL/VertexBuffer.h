@@ -11,7 +11,7 @@ public:
 	~VertexBuffer();
 	void Bind() const;
 	void Unbind() const;
-	const unsigned int GetVertexBufferID() const;
+	const unsigned int GetID() const;
 
 private:
 	unsigned int vertexBufferID;

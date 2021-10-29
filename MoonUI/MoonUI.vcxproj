@@ -183,7 +183,7 @@
     <ClCompile Include="src\OpenGL\VertexBuffer.cpp" />
     <ClCompile Include="src\OpenGL\VertexArray.cpp" />
     <ClCompile Include="src\OpenGL\Texture.cpp" />
-    <ClCompile Include="WiggleBehaviour.cpp" />
+    <ClCompile Include="src\Components\WiggleBehaviour.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Components\RenderBehaviour.h" />
@@ -490,7 +490,7 @@
     <ClInclude Include="src\OpenGL\VertexBufferLayout.h" />
     <ClInclude Include="src\OpenGL\Texture.h" />
     <ClInclude Include="src\Example\TestSceneDecorator.h" />
-    <ClInclude Include="WiggleBehaviour.h" />
+    <ClInclude Include="src\Components\WiggleBehaviour.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Shaders\Basic.shader" />

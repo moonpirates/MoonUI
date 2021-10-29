@@ -63,7 +63,7 @@
     <ClCompile Include="src\Components\RenderBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WiggleBehaviour.cpp">
+    <ClCompile Include="src\Components\WiggleBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -980,7 +980,7 @@
     <ClInclude Include="src\Components\RenderBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WiggleBehaviour.h">
+    <ClInclude Include="src\Components\WiggleBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

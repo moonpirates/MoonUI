@@ -3,11 +3,12 @@
 Texture::Texture(const std::string path) :
 	id(0), path(path), localBuffer(nullptr), width(0), height(0), bitsPerPixel(0)
 {
-	stbi_set_flip_vertically_on_load(true); // 1 als dit niet werkt
+	stbi_set_flip_vertically_on_load(true);
 	localBuffer = stbi_load(path.c_str(), &width, &height, &bitsPerPixel, 4); // RGBA = 4 channels
 
 	glGenTextures(1, &id);
 	glBindTexture(GL_TEXTURE_2D, id);
+	LOG("Created texture with ID: " << id);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // How to act when scaling down
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // How to act when scaling up
@@ -37,6 +38,11 @@ void Texture::Bind(unsigned int slot) const
 void Texture::Unbind() const
 {
 	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+unsigned int Texture::GetID() const
+{
+	return id;
 }
 
 unsigned int Texture::GetWidth() const

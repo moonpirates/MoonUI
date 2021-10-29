@@ -3,6 +3,7 @@
 #include <iostream>
 #include <GL/glew.h>
 #include <stb/stb_image.h>
+#include <Macros/Macros.h>
 
 class Texture
 {
@@ -13,6 +14,7 @@ public:
 	void Bind(unsigned int slot = 0) const;
 	void Unbind() const;
 
+	unsigned int GetID() const;
 	unsigned int GetWidth() const;
 	unsigned int GetHeight() const;
 

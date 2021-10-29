@@ -7,6 +7,7 @@ class ImageBehaviour : public RenderBehaviour
 {
 public:
 	Utils::Color Color;
+	float TextureID;
 
 	ImageBehaviour();
 	void Render() override;

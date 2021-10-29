@@ -22,7 +22,7 @@ void VertexBuffer::Unbind() const
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-const unsigned int VertexBuffer::GetVertexBufferID() const
+const unsigned int VertexBuffer::GetID() const
 {
 	return vertexBufferID;
 }

@@ -28,7 +28,7 @@ public:
 	void Flush();
 	void Clear();
 
-	void PushQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color);
+	void PushQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color, const float textureID);
 
 private:
 	static const int MAX_NUM_QUADS = 1000; // Max number of quads per batch
@@ -39,7 +39,8 @@ private:
 	IndexBuffer* indexBuffer;
 	VertexArray* vertexArray;
 	Shader* shader;
-	Texture* texture;
+	Texture* textureBlisk;
+	Texture* textureGithub;
 	
 	glm::mat4* projectionMatrix;
 	glm::mat4* viewMatrix;

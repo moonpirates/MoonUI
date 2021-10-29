@@ -33,9 +33,20 @@ void Renderer::Init()
 	shader->Bind();
 
 	// Create texture
-	texture = new Texture("res/Textures/blisk-logo.png");
-	texture->Bind();
-	shader->SetUniform1i("u_Texture", 0);
+	textureBlisk = new Texture("res/Textures/blisk-logo.png");
+	textureGithub = new Texture("res/Textures/github-logo.png");
+	
+	// Texture slots match indices in sampler array
+	textureBlisk->Bind(0);
+	textureGithub->Bind(1);
+	
+	int samplers[32];
+	for (int i = 0; i < 32; i++)
+	{
+		samplers[i] = i;
+	}
+
+	shader->SetUniform1iv("u_Textures", 32, samplers);
 
 	vertexArray->Unbind();
 	vertexBuffer->Unbind();
@@ -64,7 +75,7 @@ void Renderer::Shutdown()
 	delete vertexBuffer;
 	delete indexBuffer;
 	delete shader;
-	delete texture;
+	delete textureBlisk;
 	delete[] quadBuffer;
 
 	IsInitialized = false;
@@ -89,7 +100,6 @@ void Renderer::Flush()
 
 	glm::mat4 modelMatrix = glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)));
 	shader->Bind();
-	//shader->SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
 	shader->SetUniformMat4f("u_MVP", *projectionMatrix * *viewMatrix * modelMatrix);
 
 	Draw(*vertexArray, *indexBuffer, *shader);
@@ -103,7 +113,7 @@ void Renderer::Clear()
 	drawCount = 0;
 }
 
-void Renderer::PushQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color)
+void Renderer::PushQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color, const float textureID)
 {
 	if (quadCount + 1 > MAX_NUM_QUADS)
 	{
@@ -111,7 +121,7 @@ void Renderer::PushQuad(const Utils::Vector2& position, const Utils::Vector2& si
 		BeginBatch();
 	}
 
-	std::array<Vertex, 4> quad = MeshGenerator::GetQuad(position, size, color);
+	std::array<Vertex, 4> quad = MeshGenerator::GetQuad(position, size, color, textureID);
 
 	*quadBufferPointer = quad[0];
 	quadBufferPointer++;
