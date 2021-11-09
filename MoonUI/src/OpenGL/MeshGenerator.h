@@ -9,8 +9,8 @@ class MeshGenerator
 {
 public:
 	static std::array<Vertex, 4> GetQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color);
-	static std::array<Vertex, 4> GetQuad(const Utils::Vector2& position, const Utils::Vector2& size, const float textureID);
-	static std::array<Vertex, 4> GetQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color, const float textureID);
+	static std::array<Vertex, 4> GetQuad(const Utils::Vector2& position, const Utils::Vector2& size, const float& textureID);
+	static std::array<Vertex, 4> GetQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color, const float& textureID);
 
 	template <int NumIndices>
 	static std::array<unsigned int, NumIndices>* GetQuadIndices()

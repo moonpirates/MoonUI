@@ -5,12 +5,12 @@ std::array<Vertex, 4> MeshGenerator::GetQuad(const Utils::Vector2& position, con
 	return GetQuad(position, size, color, 0.0f);
 }
 
-std::array<Vertex, 4> MeshGenerator::GetQuad(const Utils::Vector2& position, const Utils::Vector2& size, const float textureID)
+std::array<Vertex, 4> MeshGenerator::GetQuad(const Utils::Vector2& position, const Utils::Vector2& size, const float& textureID)
 {
 	return GetQuad(position, size, Utils::Color::White, textureID);
 }
 
-std::array<Vertex, 4> MeshGenerator::GetQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color, const float textureID)
+std::array<Vertex, 4> MeshGenerator::GetQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color, const float& textureID)
 {
 	// Bottom left
 	Vertex v0;

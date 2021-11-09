@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <map>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -28,7 +29,7 @@ public:
 	void Flush();
 	void Clear();
 
-	void PushQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color, const float textureID);
+	void PushQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color, const std::string& texturePath = "");
 
 private:
 	static const int MAX_NUM_QUADS = 1000; // Max number of quads per batch
@@ -39,6 +40,8 @@ private:
 	IndexBuffer* indexBuffer;
 	VertexArray* vertexArray;
 	Shader* shader;
+	std::map<const std::string, Texture>* textureRegistry;
+	uint32_t textureSlotIndex;
 	Texture* textureBlisk;
 	Texture* textureGithub;
 	
@@ -50,6 +53,7 @@ private:
 	uint32_t quadCount;
 	uint32_t drawCount;
 
+	uint32_t GetTextureSlot(const std::string& texturePath);
 	void Draw(const VertexArray& vertexArray, const IndexBuffer& indexBuffer, const Shader& shader);
 };
 

@@ -11,16 +11,19 @@ public:
 	Texture(const std::string path);
 	~Texture();
 	
-	void Bind(unsigned int slot = 0) const;
+	void Bind(unsigned int slot);
 	void Unbind() const;
 
 	unsigned int GetID() const;
 	unsigned int GetWidth() const;
 	unsigned int GetHeight() const;
+	const std::string& GetPath() const;
+	unsigned int GetSlot() const;
 
 private:
 	unsigned int id;
-	std::string path;
+	const std::string path;
+	unsigned int slot;
 	unsigned char* localBuffer;
 	int width;
 	int height;

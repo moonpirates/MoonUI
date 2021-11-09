@@ -197,6 +197,7 @@
     <ClInclude Include="src\OpenGL\IndexBuffer.h" />
     <ClInclude Include="src\OpenGL\OpenGLDebug.h" />
     <ClInclude Include="src\OpenGL\ShaderSource.h" />
+    <ClInclude Include="src\OpenGL\TextureSlotInfo.h" />
     <ClInclude Include="src\OpenGL\VertexBufferLayoutElement.h" />
     <ClInclude Include="src\OpenGL\Vertex.h" />
     <ClInclude Include="src\Vendor\glm\common.hpp" />

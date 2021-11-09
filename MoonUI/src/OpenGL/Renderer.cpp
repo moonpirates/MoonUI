@@ -32,21 +32,23 @@ void Renderer::Init()
 	shader = new Shader("res/Shaders/Basic.shader");
 	shader->Bind();
 
+	textureRegistry = new std::map<const std::string, Texture>();
+
 	// Create texture
 	textureBlisk = new Texture("res/Textures/blisk-logo.png");
-	textureGithub = new Texture("res/Textures/github-logo.png");
+	textureBlisk->Bind(1);
 	
 	// Texture slots match indices in sampler array
-	textureBlisk->Bind(0);
-	textureGithub->Bind(1);
-	
-	int samplers[32];
+	textureGithub = new Texture("res/Textures/github-logo.png");
+	textureGithub->Bind(2);
+
+	int slots[32];
 	for (int i = 0; i < 32; i++)
 	{
-		samplers[i] = i;
+		slots[i] = i;
 	}
 
-	shader->SetUniform1iv("u_Textures", 32, samplers);
+	shader->SetUniform1iv("u_Textures", 32, slots);
 
 	vertexArray->Unbind();
 	vertexBuffer->Unbind();
@@ -113,7 +115,7 @@ void Renderer::Clear()
 	drawCount = 0;
 }
 
-void Renderer::PushQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color, const float textureID)
+void Renderer::PushQuad(const Utils::Vector2& position, const Utils::Vector2& size, const Utils::Color& color, const std::string& texturePath)
 {
 	if (quadCount + 1 > MAX_NUM_QUADS)
 	{
@@ -121,7 +123,9 @@ void Renderer::PushQuad(const Utils::Vector2& position, const Utils::Vector2& si
 		BeginBatch();
 	}
 
-	std::array<Vertex, 4> quad = MeshGenerator::GetQuad(position, size, color, textureID);
+	uint32_t slotIndex = GetTextureSlot(texturePath);
+
+	std::array<Vertex, 4> quad = MeshGenerator::GetQuad(position, size, color, slotIndex);
 
 	*quadBufferPointer = quad[0];
 	quadBufferPointer++;
@@ -133,6 +137,42 @@ void Renderer::PushQuad(const Utils::Vector2& position, const Utils::Vector2& si
 	quadBufferPointer++;
 
 	quadCount++;
+}
+
+uint32_t Renderer::GetTextureSlot(const std::string& texturePath)
+{
+	if (texturePath.empty())
+	{
+		return 0;
+	}
+	return texturePath.find("github") != std::string::npos ? 2 : 1;
+
+	/*
+	else
+	{
+		uint32_t newSlotIndex = ++textureSlotIndex;
+
+		auto textureRegistryPair = textureRegistry->find(texturePath);
+		if (textureRegistryPair == textureRegistry->end())
+		{
+			if (newSlotIndex >= 32)
+			{
+				LOG_ERROR("Cannot assign more than 32 slots right now. TODO!");
+				return 0;
+			}
+
+			textureRegistry->emplace(texturePath, texturePath);
+			
+			textureRegistry->find(texturePath)->second.Bind(newSlotIndex);
+
+			return newSlotIndex;
+		}
+		else
+		{
+			return textureRegistryPair->second.GetSlot();
+		}
+	}
+	*/
 }
 
 void Renderer::Draw(const VertexArray& vertexArray, const IndexBuffer& indexBuffer, const Shader& shader)

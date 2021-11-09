@@ -33,6 +33,13 @@ in float v_TexIndex;
 
 void main()
 {
-	int index = int(v_TexIndex);
-	color = texture(u_Textures[index], v_TexCoord) * v_VertexColor;
+	if (v_TexIndex == 0)
+	{
+		color = v_VertexColor;
+	}
+	else
+	{
+		int index = int(v_TexIndex);
+		color = texture(u_Textures[index], v_TexCoord) * v_VertexColor;
+	}
 };

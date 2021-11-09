@@ -46,7 +46,7 @@ public:
 				float b = Math::Lerp(1.0f, 0.25f, tY);
 
 				pair.first->Color = { r, g, b, 1.0f };
-				pair.first->TextureID = (x + y) % 2 == 0 ? 0 : 1;
+				pair.first->TexturePath = (x + y) % 2 == 0 ? "res/Textures/blisk-logo.png" : "res/Textures/github-logo.png";
 				pair.second->Position = { x * tileSize.X + 1, y * tileSize.Y + 1 };
 			}
 		}
@@ -58,7 +58,7 @@ public:
 	{
 		GameObject* child = parent->AddChild(name);
 		ImageBehaviour* image = child->AddComponent<ImageBehaviour>();
-		//WiggleBehaviour* wiggle = child->AddComponent<WiggleBehaviour>();
+		WiggleBehaviour* wiggle = child->AddComponent<WiggleBehaviour>();
 
 		Transform* transform = child->GetComponent<Transform>();
 		transform->Size = tileSize;
